@@ -4,16 +4,13 @@ package poblenou.rottentomatoesclient.json;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Generated;
-
-@Generated("org.jsonschema2pojo")
 public class Ratings {
 
     private String criticsRating;
     private Integer criticsScore;
     private String audienceRating;
     private Integer audienceScore;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The criticsRating

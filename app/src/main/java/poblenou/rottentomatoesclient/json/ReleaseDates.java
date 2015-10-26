@@ -4,13 +4,10 @@ package poblenou.rottentomatoesclient.json;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Generated;
-
-@Generated("org.jsonschema2pojo")
 public class ReleaseDates {
 
     private String theater;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The theater

@@ -4,13 +4,10 @@ package poblenou.rottentomatoesclient.json;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Generated;
-
-@Generated("org.jsonschema2pojo")
 public class AlternateIds {
 
     private String imdb;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The imdb

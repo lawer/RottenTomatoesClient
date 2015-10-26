@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Generated;
-
-@Generated("org.jsonschema2pojo")
 public class Movie {
 
     private String id;
@@ -21,10 +18,10 @@ public class Movie {
     private Ratings ratings;
     private String synopsis;
     private Posters posters;
-    private List<AbridgedCast> abridgedCast = new ArrayList<AbridgedCast>();
+    private List<AbridgedCast> abridgedCast = new ArrayList<>();
     private AlternateIds alternateIds;
     private Links links;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The id
