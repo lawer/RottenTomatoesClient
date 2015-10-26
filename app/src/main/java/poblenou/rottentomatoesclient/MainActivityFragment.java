@@ -94,6 +94,8 @@ public class MainActivityFragment extends Fragment {
 
     private void refresh() {
         final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/";
+        final String API_KEY = "9htuhtcb4ymusd73d4z6jxcj";
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -101,15 +103,16 @@ public class MainActivityFragment extends Fragment {
 
         RottenTomatoesInterface servei = retrofit.create(RottenTomatoesInterface.class);
 
-        Call<ApiData> call = servei.getPeliculesMesVistes("es");
+        Call<ApiData> call = servei.getPeliculesMesVistes("es", API_KEY);
         call.enqueue(new Callback<ApiData>() {
             @Override
             public void onResponse(Response<ApiData> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
-                    Log.d(null, "OK");
                     ApiData apiData = response.body();
+                    Log.e("XXXX", apiData.getMovies().toString());
+                } else {
+                    Log.e("XXX", response.errorBody().toString());
                 }
-
             }
 
             @Override
@@ -121,10 +124,16 @@ public class MainActivityFragment extends Fragment {
 
     public interface RottenTomatoesInterface {
         @GET("lists/movies/box_office.json")
-        Call<ApiData> getPeliculesMesVistes(@Query("country") String pais);
+        Call<ApiData> getPeliculesMesVistes(
+                @Query("country") String pais,
+                @Query("apikey") String apiKey
+        );
 
         @GET("lists/movies/upcoming.json")
-        Call<ApiData> getProximesEstrenes(@Query("country") String pais);
+        Call<ApiData> getProximesEstrenes(
+                @Query("country") String pais,
+                @Query("apikey") String apiKey
+        );
     }
 
 }
