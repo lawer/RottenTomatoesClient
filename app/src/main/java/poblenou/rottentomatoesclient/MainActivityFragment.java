@@ -97,6 +97,8 @@ public class MainActivityFragment extends Fragment {
                 .build();
 
         RottenTomatoesInterface servei = retrofit.create(RottenTomatoesInterface.class);
+
+        Call<ApiData> call = servei.getPeliculesMesVistes("es");
     }
 
     public interface RottenTomatoesInterface {
