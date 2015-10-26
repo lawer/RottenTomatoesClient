@@ -3,6 +3,8 @@ package poblenou.rottentomatoesclient;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,6 +22,12 @@ public class MainActivityFragment extends Fragment {
     private ArrayAdapter<String> adapter;
 
     public MainActivityFragment() {
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_pelis_fragment, menu);
     }
 
     @Override
