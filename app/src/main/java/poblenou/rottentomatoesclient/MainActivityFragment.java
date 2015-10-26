@@ -14,6 +14,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -83,6 +86,11 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void refresh() {
+        final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
     }
 
