@@ -95,6 +95,8 @@ public class MainActivityFragment extends Fragment {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        RottenTomatoesInterface servei = retrofit.create(RottenTomatoesInterface.class);
     }
 
     public interface RottenTomatoesInterface {
