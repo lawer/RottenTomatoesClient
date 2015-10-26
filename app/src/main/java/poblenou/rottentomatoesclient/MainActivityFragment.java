@@ -14,8 +14,12 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import poblenou.rottentomatoesclient.json.ApiData;
+import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import retrofit.http.GET;
+import retrofit.http.Query;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -95,6 +99,9 @@ public class MainActivityFragment extends Fragment {
     }
 
     public interface RottenTomatoesInterface {
+        @GET("lists/movies/box_office.json")
+        Call<ApiData> getPeliculesMesVistes(@Query("country") String pais);
+
     }
 
 }
