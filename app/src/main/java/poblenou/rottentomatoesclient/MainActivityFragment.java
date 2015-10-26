@@ -18,7 +18,6 @@ import java.util.Arrays;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
-
     private ArrayList<String> items;
     private ArrayAdapter<String> adapter;
 
@@ -29,6 +28,12 @@ public class MainActivityFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        refresh();
     }
 
     @Override
