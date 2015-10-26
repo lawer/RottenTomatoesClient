@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import poblenou.rottentomatoesclient.json.ApiData;
+import poblenou.rottentomatoesclient.json.Movie;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -109,7 +110,11 @@ public class MainActivityFragment extends Fragment {
             public void onResponse(Response<ApiData> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     ApiData apiData = response.body();
-                    Log.e("XXXX", apiData.getMovies().toString());
+
+                    adapter.clear();
+                    for (Movie peli : apiData.getMovies()) {
+                        adapter.add(peli.getTitle());
+                    }
                 } else {
                     Log.e("XXX", response.errorBody().toString());
                 }
