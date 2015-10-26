@@ -107,6 +107,7 @@ public class MainActivityFragment extends Fragment {
             public void onResponse(Response<ApiData> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     Log.d(null, "OK");
+                    ApiData apiData = response.body();
                 }
 
             }
