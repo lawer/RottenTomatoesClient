@@ -16,7 +16,9 @@ import java.util.Arrays;
 
 import poblenou.rottentomatoesclient.json.ApiData;
 import retrofit.Call;
+import retrofit.Callback;
 import retrofit.GsonConverterFactory;
+import retrofit.Response;
 import retrofit.Retrofit;
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -99,6 +101,17 @@ public class MainActivityFragment extends Fragment {
         RottenTomatoesInterface servei = retrofit.create(RottenTomatoesInterface.class);
 
         Call<ApiData> call = servei.getPeliculesMesVistes("es");
+        call.enqueue(new Callback<ApiData>() {
+            @Override
+            public void onResponse(Response<ApiData> response, Retrofit retrofit) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
     }
 
     public interface RottenTomatoesInterface {
