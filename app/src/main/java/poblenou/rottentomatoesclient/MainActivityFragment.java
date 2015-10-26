@@ -95,13 +95,14 @@ public class MainActivityFragment extends Fragment {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
     }
 
     public interface RottenTomatoesInterface {
         @GET("lists/movies/box_office.json")
         Call<ApiData> getPeliculesMesVistes(@Query("country") String pais);
 
+        @GET("lists/movies/upcoming.json")
+        Call<ApiData> getProximesEstrenes(@Query("country") String pais);
     }
 
 }
