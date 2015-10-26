@@ -2,6 +2,7 @@ package poblenou.rottentomatoesclient;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -104,6 +105,9 @@ public class MainActivityFragment extends Fragment {
         call.enqueue(new Callback<ApiData>() {
             @Override
             public void onResponse(Response<ApiData> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    Log.d(null, "OK");
+                }
 
             }
 
