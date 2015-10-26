@@ -94,4 +94,7 @@ public class MainActivityFragment extends Fragment {
 
     }
 
+    public interface RottenTomatoesInterface {
+    }
+
 }
