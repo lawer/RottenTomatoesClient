@@ -54,6 +54,33 @@ public class RottenTomatoesAPIClientRetrofit {
         );
     }
 
+    public void getProximesEstrenes(final ArrayAdapter adapter) {
+        Call<ApiData> call = servei.getProximesEstrenes("es", API_KEY);
+        call.enqueue(new Callback<ApiData>() {
+                         @Override
+                         public void onResponse(Response<ApiData> response, Retrofit retrofit) {
+                             if (response.isSuccess()) {
+                                 ApiData apiData = response.body();
+
+                                 adapter.clear();
+                                 for (Movie peli : apiData.getMovies()) {
+                                     adapter.add(peli.getTitle());
+                                 }
+                             } else {
+                                 Log.e("XXX", response.errorBody().toString());
+                             }
+                         }
+
+                         @Override
+                         public void onFailure(Throwable t) {
+
+                         }
+                     }
+
+        );
+    }
+
+
     interface RottenTomatoesInterface {
         @GET("lists/movies/box_office.json")
         Call<ApiData> getPeliculesMesVistes(
