@@ -88,7 +88,9 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void refresh() {
+        String pais = "es";
+
         RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit();
-        apiClient.getProximesEstrenes(adapter);
+        apiClient.getProximesEstrenes(adapter, pais);
     }
 }

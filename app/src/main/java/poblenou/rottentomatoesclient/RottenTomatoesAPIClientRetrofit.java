@@ -28,8 +28,8 @@ public class RottenTomatoesAPIClientRetrofit {
         super();
     }
 
-    public void getPeliculesMesVistes(final ArrayAdapter adapter) {
-        Call<ApiData> call = servei.getPeliculesMesVistes("es", API_KEY);
+    public void getPeliculesMesVistes(final ArrayAdapter adapter, String pais) {
+        Call<ApiData> call = servei.getPeliculesMesVistes(pais, API_KEY);
         call.enqueue(new Callback<ApiData>() {
                          @Override
                          public void onResponse(Response<ApiData> response, Retrofit retrofit) {
@@ -54,8 +54,8 @@ public class RottenTomatoesAPIClientRetrofit {
         );
     }
 
-    public void getProximesEstrenes(final ArrayAdapter adapter) {
-        Call<ApiData> call = servei.getProximesEstrenes("es", API_KEY);
+    public void getProximesEstrenes(final ArrayAdapter adapter, String pais) {
+        Call<ApiData> call = servei.getProximesEstrenes(pais, API_KEY);
         call.enqueue(new Callback<ApiData>() {
                          @Override
                          public void onResponse(Response<ApiData> response, Retrofit retrofit) {
