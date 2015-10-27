@@ -53,6 +53,31 @@ public class RottenTomatoesAPIClientSimple {
         }
     }
 
+    public void getProximesEstrenes(final ArrayAdapter adapter) {
+        final String SUB_URL = "lists/movies/upcoming.json";
+
+        final String COUNTRY_PARAM = "country";
+        final String APIKEY_PARAM = "apikey";
+
+        String country = "es";
+
+        Uri builtUri = Uri.parse(BASE_URL + SUB_URL).buildUpon()
+                .appendQueryParameter(COUNTRY_PARAM, country)
+                .appendQueryParameter(APIKEY_PARAM, API_KEY)
+                .build();
+
+        Log.w("XXXX", builtUri.toString());
+
+        try {
+            URL url = new URL(builtUri.toString());
+
+            DownloadMoviesTask task = new DownloadMoviesTask();
+            task.execute(adapter, url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public class DownloadMoviesTask extends AsyncTask<Object, Void, ArrayList<String>> {
 
         private ArrayAdapter<String> adapter;
