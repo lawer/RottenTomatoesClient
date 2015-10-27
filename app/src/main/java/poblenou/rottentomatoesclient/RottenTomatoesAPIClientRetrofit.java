@@ -13,7 +13,7 @@ import retrofit.Retrofit;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
-public class RottenTomatoesAPIClient {
+public class RottenTomatoesAPIClientRetrofit {
     final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/";
     final String API_KEY = "9htuhtcb4ymusd73d4z6jxcj";
 
@@ -24,7 +24,7 @@ public class RottenTomatoesAPIClient {
 
     RottenTomatoesInterface servei = retrofit.create(RottenTomatoesInterface.class);
 
-    public RottenTomatoesAPIClient() {
+    public RottenTomatoesAPIClientRetrofit() {
         super();
     }
 
