@@ -88,7 +88,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     private void refresh() {
-        RottenTomatoesAPIClientSimple apiClient = new RottenTomatoesAPIClientSimple();
+        RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit();
         apiClient.getProximesEstrenes(adapter);
     }
 }
