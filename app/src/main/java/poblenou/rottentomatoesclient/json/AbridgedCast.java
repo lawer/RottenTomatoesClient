@@ -6,50 +6,65 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Generated;
+
+@Generated("org.jsonschema2pojo")
 public class AbridgedCast {
 
     private String name;
     private String id;
-    private List<String> characters = new ArrayList<>();
-    private Map<String, Object> additionalProperties = new HashMap<>();
+    private List<String> characters = new ArrayList<String>();
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * @return The name
+     *
+     * @return
+     *     The name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @param name The name
+     *
+     * @param name
+     *     The name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @return The id
+     *
+     * @return
+     *     The id
      */
     public String getId() {
         return id;
     }
 
     /**
-     * @param id The id
+     *
+     * @param id
+     *     The id
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * @return The characters
+     *
+     * @return
+     *     The characters
      */
     public List<String> getCharacters() {
         return characters;
     }
 
     /**
-     * @param characters The characters
+     *
+     * @param characters
+     *     The characters
      */
     public void setCharacters(List<String> characters) {
         this.characters = characters;

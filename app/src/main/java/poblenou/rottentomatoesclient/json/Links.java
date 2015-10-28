@@ -4,6 +4,9 @@ package poblenou.rottentomatoesclient.json;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Generated;
+
+@Generated("org.jsonschema2pojo")
 public class Links {
 
     private String self;
@@ -11,73 +14,93 @@ public class Links {
     private String cast;
     private String reviews;
     private String similar;
-    private Map<String, Object> additionalProperties = new HashMap<>();
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * @return The self
+     *
+     * @return
+     *     The self
      */
     public String getSelf() {
         return self;
     }
 
     /**
-     * @param self The self
+     *
+     * @param self
+     *     The self
      */
     public void setSelf(String self) {
         this.self = self;
     }
 
     /**
-     * @return The alternate
+     *
+     * @return
+     *     The alternate
      */
     public String getAlternate() {
         return alternate;
     }
 
     /**
-     * @param alternate The alternate
+     *
+     * @param alternate
+     *     The alternate
      */
     public void setAlternate(String alternate) {
         this.alternate = alternate;
     }
 
     /**
-     * @return The cast
+     *
+     * @return
+     *     The cast
      */
     public String getCast() {
         return cast;
     }
 
     /**
-     * @param cast The cast
+     *
+     * @param cast
+     *     The cast
      */
     public void setCast(String cast) {
         this.cast = cast;
     }
 
     /**
-     * @return The reviews
+     *
+     * @return
+     *     The reviews
      */
     public String getReviews() {
         return reviews;
     }
 
     /**
-     * @param reviews The reviews
+     *
+     * @param reviews
+     *     The reviews
      */
     public void setReviews(String reviews) {
         this.reviews = reviews;
     }
 
     /**
-     * @return The similar
+     *
+     * @return
+     *     The similar
      */
     public String getSimilar() {
         return similar;
     }
 
     /**
-     * @param similar The similar
+     *
+     * @param similar
+     *     The similar
      */
     public void setSimilar(String similar) {
         this.similar = similar;

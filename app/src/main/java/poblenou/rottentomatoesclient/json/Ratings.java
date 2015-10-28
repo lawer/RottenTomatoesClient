@@ -4,65 +4,65 @@ package poblenou.rottentomatoesclient.json;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Generated;
+
+@Generated("org.jsonschema2pojo")
 public class Ratings {
 
     private String criticsRating;
     private Integer criticsScore;
-    private String audienceRating;
     private Integer audienceScore;
-    private Map<String, Object> additionalProperties = new HashMap<>();
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     * @return The criticsRating
+     *
+     * @return
+     *     The criticsRating
      */
     public String getCriticsRating() {
         return criticsRating;
     }
 
     /**
-     * @param criticsRating The critics_rating
+     *
+     * @param criticsRating
+     *     The critics_rating
      */
     public void setCriticsRating(String criticsRating) {
         this.criticsRating = criticsRating;
     }
 
     /**
-     * @return The criticsScore
+     *
+     * @return
+     *     The criticsScore
      */
     public Integer getCriticsScore() {
         return criticsScore;
     }
 
     /**
-     * @param criticsScore The critics_score
+     *
+     * @param criticsScore
+     *     The critics_score
      */
     public void setCriticsScore(Integer criticsScore) {
         this.criticsScore = criticsScore;
     }
 
     /**
-     * @return The audienceRating
-     */
-    public String getAudienceRating() {
-        return audienceRating;
-    }
-
-    /**
-     * @param audienceRating The audience_rating
-     */
-    public void setAudienceRating(String audienceRating) {
-        this.audienceRating = audienceRating;
-    }
-
-    /**
-     * @return The audienceScore
+     *
+     * @return
+     *     The audienceScore
      */
     public Integer getAudienceScore() {
         return audienceScore;
     }
 
     /**
-     * @param audienceScore The audience_score
+     *
+     * @param audienceScore
+     *     The audience_score
      */
     public void setAudienceScore(Integer audienceScore) {
         this.audienceScore = audienceScore;
