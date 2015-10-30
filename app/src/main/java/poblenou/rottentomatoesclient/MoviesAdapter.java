@@ -41,8 +41,8 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         tvTitle.setText(movie.getTitle());
-        tvCriticsScore.setText("Score: " + movie.getRatings().getCriticsRating() + "%");
-        tvCast.setText(movie.getAbridgedCast().toString());
+        tvCriticsScore.setText("Score: " + movie.getRatings().getCriticsScore() + "%");
+        tvCast.setText(movie.getCast());
 
         // Retornem la View replena per a mostrarla
         return convertView;

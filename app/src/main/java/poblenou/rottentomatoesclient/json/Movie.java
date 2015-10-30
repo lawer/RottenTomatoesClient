@@ -1,11 +1,13 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Movie {
@@ -282,6 +284,18 @@ public class Movie {
      */
     public void setLinks(Links links) {
         this.links = links;
+    }
+
+    public String getCast() {
+        StringBuilder builder = new StringBuilder();
+        for (AbridgedCast actor : abridgedCast) {
+            builder.append(actor.getName());
+            builder.append(", ");
+        }
+        builder.deleteCharAt(builder.length() - 1);
+        builder.deleteCharAt(builder.length() - 1);
+
+        return builder.toString();
     }
 
     @Override
