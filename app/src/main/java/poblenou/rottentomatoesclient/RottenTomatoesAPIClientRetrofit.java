@@ -30,32 +30,16 @@ public class RottenTomatoesAPIClientRetrofit {
 
     public void getPeliculesMesVistes(final ArrayAdapter<String> adapter, String pais) {
         Call<ApiData> call = servei.getPeliculesMesVistes(pais, API_KEY);
-        call.enqueue(new Callback<ApiData>() {
-                         @Override
-                         public void onResponse(Response<ApiData> response, Retrofit retrofit) {
-                             if (response.isSuccess()) {
-                                 ApiData apiData = response.body();
-
-                                 adapter.clear();
-                                 for (Movie peli : apiData.getMovies()) {
-                                     adapter.add(peli.getTitle());
-                                 }
-                             } else {
-                                 Log.e("XXX", response.errorBody().toString());
-                             }
-                         }
-
-                         @Override
-                         public void onFailure(Throwable t) {
-                             t.printStackTrace();
-                         }
-                     }
-
-        );
+        processCall(adapter, call);
     }
 
     public void getProximesEstrenes(final ArrayAdapter<String> adapter, String pais) {
         Call<ApiData> call = servei.getProximesEstrenes(pais, API_KEY);
+        processCall(adapter, call);
+    }
+
+
+    private void processCall(final ArrayAdapter<String> adapter, Call<ApiData> call) {
         call.enqueue(new Callback<ApiData>() {
                          @Override
                          public void onResponse(Response<ApiData> response, Retrofit retrofit) {
@@ -79,7 +63,6 @@ public class RottenTomatoesAPIClientRetrofit {
 
         );
     }
-
 
     interface RottenTomatoesInterface {
         @GET("lists/movies/box_office.json")
