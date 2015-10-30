@@ -1,20 +1,22 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class Links_ {
 
+    @SerializedName("self")
+    @Expose
     private String self;
+    @SerializedName("alternate")
+    @Expose
     private String alternate;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
+     * 
      * @return
      *     The self
      */
@@ -23,7 +25,7 @@ public class Links_ {
     }
 
     /**
-     *
+     * 
      * @param self
      *     The self
      */
@@ -32,7 +34,7 @@ public class Links_ {
     }
 
     /**
-     *
+     * 
      * @return
      *     The alternate
      */
@@ -41,20 +43,12 @@ public class Links_ {
     }
 
     /**
-     *
+     * 
      * @param alternate
      *     The alternate
      */
     public void setAlternate(String alternate) {
         this.alternate = alternate;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

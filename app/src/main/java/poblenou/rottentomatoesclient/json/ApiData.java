@@ -2,46 +2,35 @@
 package poblenou.rottentomatoesclient.json;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class ApiData {
 
-    private Integer total;
+    @SerializedName("movies")
+    @Expose
     private List<Movie> movies = new ArrayList<Movie>();
+    @SerializedName("links")
+    @Expose
     private Links_ links;
+    @SerializedName("link_template")
+    @Expose
     private String linkTemplate;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
+     * 
      * @return
-     *     The total
-     */
-    public Integer getTotal() {
-        return total;
-    }
-
-    /**
-     * @param total The total
-     */
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
-
-    /**
-     * @return The movies
+     *     The movies
      */
     public List<Movie> getMovies() {
         return movies;
     }
 
     /**
-     *
+     * 
      * @param movies
      *     The movies
      */
@@ -50,7 +39,7 @@ public class ApiData {
     }
 
     /**
-     *
+     * 
      * @return
      *     The links
      */
@@ -59,7 +48,7 @@ public class ApiData {
     }
 
     /**
-     *
+     * 
      * @param links
      *     The links
      */
@@ -68,7 +57,7 @@ public class ApiData {
     }
 
     /**
-     *
+     * 
      * @return
      *     The linkTemplate
      */
@@ -77,20 +66,12 @@ public class ApiData {
     }
 
     /**
-     *
+     * 
      * @param linkTemplate
      *     The link_template
      */
     public void setLinkTemplate(String linkTemplate) {
         this.linkTemplate = linkTemplate;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

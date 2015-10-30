@@ -2,22 +2,26 @@
 package poblenou.rottentomatoesclient.json;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class AbridgedCast {
 
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("characters")
+    @Expose
     private List<String> characters = new ArrayList<String>();
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
+     * 
      * @return
      *     The name
      */
@@ -26,7 +30,7 @@ public class AbridgedCast {
     }
 
     /**
-     *
+     * 
      * @param name
      *     The name
      */
@@ -35,7 +39,7 @@ public class AbridgedCast {
     }
 
     /**
-     *
+     * 
      * @return
      *     The id
      */
@@ -44,7 +48,7 @@ public class AbridgedCast {
     }
 
     /**
-     *
+     * 
      * @param id
      *     The id
      */
@@ -53,7 +57,7 @@ public class AbridgedCast {
     }
 
     /**
-     *
+     * 
      * @return
      *     The characters
      */
@@ -62,20 +66,12 @@ public class AbridgedCast {
     }
 
     /**
-     *
+     * 
      * @param characters
      *     The characters
      */
     public void setCharacters(List<String> characters) {
         this.characters = characters;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

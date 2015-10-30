@@ -2,32 +2,56 @@
 package poblenou.rottentomatoesclient.json;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class Movie {
 
+    @SerializedName("id")
+    @Expose
     private String id;
+    @SerializedName("title")
+    @Expose
     private String title;
+    @SerializedName("year")
+    @Expose
     private Integer year;
+    @SerializedName("mpaa_rating")
+    @Expose
     private String mpaaRating;
-    private String runtime;
+    @SerializedName("runtime")
+    @Expose
+    private Integer runtime;
+    @SerializedName("critics_consensus")
+    @Expose
     private String criticsConsensus;
+    @SerializedName("release_dates")
+    @Expose
     private ReleaseDates releaseDates;
+    @SerializedName("ratings")
+    @Expose
     private Ratings ratings;
+    @SerializedName("synopsis")
+    @Expose
     private String synopsis;
+    @SerializedName("posters")
+    @Expose
     private Posters posters;
+    @SerializedName("abridged_cast")
+    @Expose
     private List<AbridgedCast> abridgedCast = new ArrayList<AbridgedCast>();
+    @SerializedName("alternate_ids")
+    @Expose
     private AlternateIds alternateIds;
+    @SerializedName("links")
+    @Expose
     private Links links;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
+     * 
      * @return
      *     The id
      */
@@ -36,7 +60,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param id
      *     The id
      */
@@ -45,7 +69,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The title
      */
@@ -54,7 +78,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param title
      *     The title
      */
@@ -63,7 +87,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The year
      */
@@ -72,7 +96,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param year
      *     The year
      */
@@ -81,7 +105,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The mpaaRating
      */
@@ -90,7 +114,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param mpaaRating
      *     The mpaa_rating
      */
@@ -99,25 +123,25 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The runtime
      */
-    public String getRuntime() {
+    public Integer getRuntime() {
         return runtime;
     }
 
     /**
-     *
+     * 
      * @param runtime
      *     The runtime
      */
-    public void setRuntime(String runtime) {
+    public void setRuntime(Integer runtime) {
         this.runtime = runtime;
     }
 
     /**
-     *
+     * 
      * @return
      *     The criticsConsensus
      */
@@ -126,7 +150,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param criticsConsensus
      *     The critics_consensus
      */
@@ -135,7 +159,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The releaseDates
      */
@@ -144,7 +168,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param releaseDates
      *     The release_dates
      */
@@ -153,7 +177,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The ratings
      */
@@ -162,7 +186,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param ratings
      *     The ratings
      */
@@ -171,7 +195,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The synopsis
      */
@@ -180,7 +204,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param synopsis
      *     The synopsis
      */
@@ -189,7 +213,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The posters
      */
@@ -198,7 +222,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param posters
      *     The posters
      */
@@ -207,7 +231,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The abridgedCast
      */
@@ -216,7 +240,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param abridgedCast
      *     The abridged_cast
      */
@@ -225,7 +249,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The alternateIds
      */
@@ -234,7 +258,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param alternateIds
      *     The alternate_ids
      */
@@ -243,7 +267,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @return
      *     The links
      */
@@ -252,7 +276,7 @@ public class Movie {
     }
 
     /**
-     *
+     * 
      * @param links
      *     The links
      */
@@ -260,12 +284,22 @@ public class Movie {
         this.links = links;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", year=" + year +
+                ", mpaaRating='" + mpaaRating + '\'' +
+                ", runtime=" + runtime +
+                ", criticsConsensus='" + criticsConsensus + '\'' +
+                ", releaseDates=" + releaseDates +
+                ", ratings=" + ratings +
+                ", synopsis='" + synopsis + '\'' +
+                ", posters=" + posters +
+                ", abridgedCast=" + abridgedCast +
+                ", alternateIds=" + alternateIds +
+                ", links=" + links +
+                '}';
     }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
 }

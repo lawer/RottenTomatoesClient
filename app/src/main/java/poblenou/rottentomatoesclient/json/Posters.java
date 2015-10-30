@@ -1,22 +1,28 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class Posters {
 
+    @SerializedName("thumbnail")
+    @Expose
     private String thumbnail;
+    @SerializedName("profile")
+    @Expose
     private String profile;
+    @SerializedName("detailed")
+    @Expose
     private String detailed;
+    @SerializedName("original")
+    @Expose
     private String original;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
+     * 
      * @return
      *     The thumbnail
      */
@@ -25,7 +31,7 @@ public class Posters {
     }
 
     /**
-     *
+     * 
      * @param thumbnail
      *     The thumbnail
      */
@@ -34,7 +40,7 @@ public class Posters {
     }
 
     /**
-     *
+     * 
      * @return
      *     The profile
      */
@@ -43,7 +49,7 @@ public class Posters {
     }
 
     /**
-     *
+     * 
      * @param profile
      *     The profile
      */
@@ -52,7 +58,7 @@ public class Posters {
     }
 
     /**
-     *
+     * 
      * @return
      *     The detailed
      */
@@ -61,7 +67,7 @@ public class Posters {
     }
 
     /**
-     *
+     * 
      * @param detailed
      *     The detailed
      */
@@ -70,7 +76,7 @@ public class Posters {
     }
 
     /**
-     *
+     * 
      * @return
      *     The original
      */
@@ -79,20 +85,12 @@ public class Posters {
     }
 
     /**
-     *
+     * 
      * @param original
      *     The original
      */
     public void setOriginal(String original) {
         this.original = original;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

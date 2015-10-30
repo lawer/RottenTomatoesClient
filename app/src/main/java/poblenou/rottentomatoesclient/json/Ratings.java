@@ -1,21 +1,28 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class Ratings {
 
+    @SerializedName("critics_rating")
+    @Expose
     private String criticsRating;
+    @SerializedName("critics_score")
+    @Expose
     private Integer criticsScore;
+    @SerializedName("audience_rating")
+    @Expose
+    private String audienceRating;
+    @SerializedName("audience_score")
+    @Expose
     private Integer audienceScore;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
+     * 
      * @return
      *     The criticsRating
      */
@@ -24,7 +31,7 @@ public class Ratings {
     }
 
     /**
-     *
+     * 
      * @param criticsRating
      *     The critics_rating
      */
@@ -33,7 +40,7 @@ public class Ratings {
     }
 
     /**
-     *
+     * 
      * @return
      *     The criticsScore
      */
@@ -42,7 +49,7 @@ public class Ratings {
     }
 
     /**
-     *
+     * 
      * @param criticsScore
      *     The critics_score
      */
@@ -51,7 +58,25 @@ public class Ratings {
     }
 
     /**
-     *
+     * 
+     * @return
+     *     The audienceRating
+     */
+    public String getAudienceRating() {
+        return audienceRating;
+    }
+
+    /**
+     * 
+     * @param audienceRating
+     *     The audience_rating
+     */
+    public void setAudienceRating(String audienceRating) {
+        this.audienceRating = audienceRating;
+    }
+
+    /**
+     * 
      * @return
      *     The audienceScore
      */
@@ -60,20 +85,12 @@ public class Ratings {
     }
 
     /**
-     *
+     * 
      * @param audienceScore
      *     The audience_score
      */
     public void setAudienceScore(Integer audienceScore) {
         this.audienceScore = audienceScore;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }

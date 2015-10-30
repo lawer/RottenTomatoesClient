@@ -1,23 +1,31 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class Links {
 
+    @SerializedName("self")
+    @Expose
     private String self;
+    @SerializedName("alternate")
+    @Expose
     private String alternate;
+    @SerializedName("cast")
+    @Expose
     private String cast;
+    @SerializedName("reviews")
+    @Expose
     private String reviews;
+    @SerializedName("similar")
+    @Expose
     private String similar;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-     *
+     * 
      * @return
      *     The self
      */
@@ -26,7 +34,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @param self
      *     The self
      */
@@ -35,7 +43,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @return
      *     The alternate
      */
@@ -44,7 +52,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @param alternate
      *     The alternate
      */
@@ -53,7 +61,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @return
      *     The cast
      */
@@ -62,7 +70,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @param cast
      *     The cast
      */
@@ -71,7 +79,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @return
      *     The reviews
      */
@@ -80,7 +88,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @param reviews
      *     The reviews
      */
@@ -89,7 +97,7 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @return
      *     The similar
      */
@@ -98,20 +106,12 @@ public class Links {
     }
 
     /**
-     *
+     * 
      * @param similar
      *     The similar
      */
     public void setSimilar(String similar) {
         this.similar = similar;
-    }
-
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
     }
 
 }
