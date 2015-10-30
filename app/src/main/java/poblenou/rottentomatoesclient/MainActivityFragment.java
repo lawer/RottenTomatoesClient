@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import poblenou.rottentomatoesclient.json.Movie;
  */
 public class MainActivityFragment extends Fragment {
     private ArrayList<Movie> items;
-    private ArrayAdapter<Movie> adapter;
+    private MoviesAdapter adapter;
 
     public MainActivityFragment() {
     }
@@ -47,10 +46,9 @@ public class MainActivityFragment extends Fragment {
         ListView lvPelis = (ListView) rootView.findViewById(R.id.lvPelis);
 
         items = new ArrayList<>();
-        adapter = new ArrayAdapter<>(
+        adapter = new MoviesAdapter(
                 getContext(),
                 R.layout.lvpelis_row,
-                R.id.tvPeli,
                 items
         );
         lvPelis.setAdapter(adapter);
