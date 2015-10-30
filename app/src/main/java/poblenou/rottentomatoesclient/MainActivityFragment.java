@@ -14,14 +14,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import poblenou.rottentomatoesclient.json.Movie;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
-    private ArrayList<String> items;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Movie> items;
+    private ArrayAdapter<Movie> adapter;
 
     public MainActivityFragment() {
     }
@@ -45,17 +46,7 @@ public class MainActivityFragment extends Fragment {
 
         ListView lvPelis = (ListView) rootView.findViewById(R.id.lvPelis);
 
-        String[] data = {
-                "Los 400 golpes",
-                "El odio",
-                "El padrino",
-                "El padrino. Parte II",
-                "Ocurrió cerca de su casa",
-                "Infiltrados",
-                "Umberto D."
-        };
-
-        items = new ArrayList<>(Arrays.asList(data));
+        items = new ArrayList<>();
         adapter = new ArrayAdapter<>(
                 getContext(),
                 R.layout.lvpelis_row,
