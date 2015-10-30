@@ -1,6 +1,8 @@
 package poblenou.rottentomatoesclient;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -91,6 +93,13 @@ public class MainActivityFragment extends Fragment {
         String pais = "es";
 
         RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit();
-        apiClient.getProximesEstrenes(adapter, pais);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
+
+        if (tipusConsulta.equals("vistes")) {
+            apiClient.getPeliculesMesVistes(adapter, pais);
+        } else {
+            apiClient.getProximesEstrenes(adapter, pais);
+        }
     }
 }
