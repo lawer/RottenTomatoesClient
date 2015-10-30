@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import poblenou.rottentomatoesclient.json.Movie;
@@ -43,6 +45,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         tvTitle.setText(movie.getTitle());
         tvCriticsScore.setText("Score: " + movie.getRatings().getCriticsScore() + "%");
         tvCast.setText(movie.getCast());
+        Picasso.with(getContext()).load(movie.getPosters().getDetailed()).into(ivPosterImage);
 
         // Retornem la View replena per a mostrarla
         return convertView;
