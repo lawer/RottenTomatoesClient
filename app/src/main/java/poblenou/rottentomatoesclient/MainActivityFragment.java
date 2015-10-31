@@ -59,6 +59,7 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getContext(), DetailActivity.class);
+                i.putExtra("movie", adapter.getItem(position));
                 startActivity(i);
             }
         });
