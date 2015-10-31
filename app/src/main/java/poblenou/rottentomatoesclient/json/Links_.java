@@ -1,13 +1,26 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import javax.annotation.Generated;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("org.jsonschema2pojo")
-public class Links_ {
+import javax.annotation.Generated;
 
+@Generated("org.jsonschema2pojo")
+public class Links_ implements Parcelable {
+
+    public static final Parcelable.Creator<Links_> CREATOR = new Parcelable.Creator<Links_>() {
+        public Links_ createFromParcel(Parcel source) {
+            return new Links_(source);
+        }
+
+        public Links_[] newArray(int size) {
+            return new Links_[size];
+        }
+    };
     @SerializedName("self")
     @Expose
     private String self;
@@ -15,8 +28,16 @@ public class Links_ {
     @Expose
     private String alternate;
 
+    public Links_() {
+    }
+
+    protected Links_(Parcel in) {
+        this.self = in.readString();
+        this.alternate = in.readString();
+    }
+
     /**
-     * 
+     *
      * @return
      *     The self
      */
@@ -25,7 +46,7 @@ public class Links_ {
     }
 
     /**
-     * 
+     *
      * @param self
      *     The self
      */
@@ -34,7 +55,7 @@ public class Links_ {
     }
 
     /**
-     * 
+     *
      * @return
      *     The alternate
      */
@@ -43,7 +64,7 @@ public class Links_ {
     }
 
     /**
-     * 
+     *
      * @param alternate
      *     The alternate
      */
@@ -51,4 +72,14 @@ public class Links_ {
         this.alternate = alternate;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.self);
+        dest.writeString(this.alternate);
+    }
 }

@@ -1,13 +1,26 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import javax.annotation.Generated;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("org.jsonschema2pojo")
-public class Ratings {
+import javax.annotation.Generated;
 
+@Generated("org.jsonschema2pojo")
+public class Ratings implements Parcelable {
+
+    public static final Parcelable.Creator<Ratings> CREATOR = new Parcelable.Creator<Ratings>() {
+        public Ratings createFromParcel(Parcel source) {
+            return new Ratings(source);
+        }
+
+        public Ratings[] newArray(int size) {
+            return new Ratings[size];
+        }
+    };
     @SerializedName("critics_rating")
     @Expose
     private String criticsRating;
@@ -21,8 +34,18 @@ public class Ratings {
     @Expose
     private Integer audienceScore;
 
+    public Ratings() {
+    }
+
+    protected Ratings(Parcel in) {
+        this.criticsRating = in.readString();
+        this.criticsScore = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.audienceRating = in.readString();
+        this.audienceScore = (Integer) in.readValue(Integer.class.getClassLoader());
+    }
+
     /**
-     * 
+     *
      * @return
      *     The criticsRating
      */
@@ -31,7 +54,7 @@ public class Ratings {
     }
 
     /**
-     * 
+     *
      * @param criticsRating
      *     The critics_rating
      */
@@ -40,7 +63,7 @@ public class Ratings {
     }
 
     /**
-     * 
+     *
      * @return
      *     The criticsScore
      */
@@ -49,7 +72,7 @@ public class Ratings {
     }
 
     /**
-     * 
+     *
      * @param criticsScore
      *     The critics_score
      */
@@ -58,7 +81,7 @@ public class Ratings {
     }
 
     /**
-     * 
+     *
      * @return
      *     The audienceRating
      */
@@ -67,7 +90,7 @@ public class Ratings {
     }
 
     /**
-     * 
+     *
      * @param audienceRating
      *     The audience_rating
      */
@@ -76,7 +99,7 @@ public class Ratings {
     }
 
     /**
-     * 
+     *
      * @return
      *     The audienceScore
      */
@@ -85,7 +108,7 @@ public class Ratings {
     }
 
     /**
-     * 
+     *
      * @param audienceScore
      *     The audience_score
      */
@@ -93,4 +116,16 @@ public class Ratings {
         this.audienceScore = audienceScore;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.criticsRating);
+        dest.writeValue(this.criticsScore);
+        dest.writeString(this.audienceRating);
+        dest.writeValue(this.audienceScore);
+    }
 }

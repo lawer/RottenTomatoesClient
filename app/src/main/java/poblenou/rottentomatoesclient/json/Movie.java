@@ -1,6 +1,9 @@
 
 package poblenou.rottentomatoesclient.json;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,8 +13,17 @@ import java.util.List;
 import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
-public class Movie {
+public class Movie implements Parcelable {
 
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        public Movie createFromParcel(Parcel source) {
+            return new Movie(source);
+        }
+
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
     @SerializedName("id")
     @Expose
     private String id;
@@ -52,8 +64,28 @@ public class Movie {
     @Expose
     private Links links;
 
+    public Movie() {
+    }
+
+    protected Movie(Parcel in) {
+        this.id = in.readString();
+        this.title = in.readString();
+        this.year = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.mpaaRating = in.readString();
+        this.runtime = in.readString();
+        this.criticsConsensus = in.readString();
+        this.releaseDates = in.readParcelable(ReleaseDates.class.getClassLoader());
+        this.ratings = in.readParcelable(Ratings.class.getClassLoader());
+        this.synopsis = in.readString();
+        this.posters = in.readParcelable(Posters.class.getClassLoader());
+        this.abridgedCast = new ArrayList<AbridgedCast>();
+        in.readList(this.abridgedCast, List.class.getClassLoader());
+        this.alternateIds = in.readParcelable(AlternateIds.class.getClassLoader());
+        this.links = in.readParcelable(Links.class.getClassLoader());
+    }
+
     /**
-     * 
+     *
      * @return
      *     The id
      */
@@ -62,7 +94,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -71,7 +103,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The title
      */
@@ -80,7 +112,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param title
      *     The title
      */
@@ -89,7 +121,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The year
      */
@@ -98,7 +130,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param year
      *     The year
      */
@@ -107,7 +139,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The mpaaRating
      */
@@ -116,7 +148,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param mpaaRating
      *     The mpaa_rating
      */
@@ -125,7 +157,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The runtime
      */
@@ -143,7 +175,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The criticsConsensus
      */
@@ -152,7 +184,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param criticsConsensus
      *     The critics_consensus
      */
@@ -161,7 +193,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The releaseDates
      */
@@ -170,7 +202,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param releaseDates
      *     The release_dates
      */
@@ -179,7 +211,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The ratings
      */
@@ -188,7 +220,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param ratings
      *     The ratings
      */
@@ -197,7 +229,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The synopsis
      */
@@ -206,7 +238,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param synopsis
      *     The synopsis
      */
@@ -215,7 +247,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The posters
      */
@@ -224,7 +256,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param posters
      *     The posters
      */
@@ -233,7 +265,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The abridgedCast
      */
@@ -242,7 +274,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param abridgedCast
      *     The abridged_cast
      */
@@ -251,7 +283,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The alternateIds
      */
@@ -260,7 +292,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param alternateIds
      *     The alternate_ids
      */
@@ -269,7 +301,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @return
      *     The links
      */
@@ -278,7 +310,7 @@ public class Movie {
     }
 
     /**
-     * 
+     *
      * @param links
      *     The links
      */
@@ -322,5 +354,27 @@ public class Movie {
                 ", alternateIds=" + alternateIds +
                 ", links=" + links +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.title);
+        dest.writeValue(this.year);
+        dest.writeString(this.mpaaRating);
+        dest.writeString(this.runtime);
+        dest.writeString(this.criticsConsensus);
+        dest.writeParcelable(this.releaseDates, flags);
+        dest.writeParcelable(this.ratings, flags);
+        dest.writeString(this.synopsis);
+        dest.writeParcelable(this.posters, flags);
+        dest.writeList(this.abridgedCast);
+        dest.writeParcelable(this.alternateIds, flags);
+        dest.writeParcelable(this.links, flags);
     }
 }

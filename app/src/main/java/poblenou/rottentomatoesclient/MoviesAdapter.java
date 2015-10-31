@@ -24,7 +24,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        // Obtenim l'objecte en la possició corresponent
+        // Obtenim l'objecte en la posició corresponent
         Movie movie = getItem(position);
         //Log.w("XXXX", movie.toString());
 

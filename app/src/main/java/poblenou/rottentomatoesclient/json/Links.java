@@ -1,13 +1,26 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import javax.annotation.Generated;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("org.jsonschema2pojo")
-public class Links {
+import javax.annotation.Generated;
 
+@Generated("org.jsonschema2pojo")
+public class Links implements Parcelable {
+
+    public static final Parcelable.Creator<Links> CREATOR = new Parcelable.Creator<Links>() {
+        public Links createFromParcel(Parcel source) {
+            return new Links(source);
+        }
+
+        public Links[] newArray(int size) {
+            return new Links[size];
+        }
+    };
     @SerializedName("self")
     @Expose
     private String self;
@@ -24,8 +37,19 @@ public class Links {
     @Expose
     private String similar;
 
+    public Links() {
+    }
+
+    protected Links(Parcel in) {
+        this.self = in.readString();
+        this.alternate = in.readString();
+        this.cast = in.readString();
+        this.reviews = in.readString();
+        this.similar = in.readString();
+    }
+
     /**
-     * 
+     *
      * @return
      *     The self
      */
@@ -34,7 +58,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @param self
      *     The self
      */
@@ -43,7 +67,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @return
      *     The alternate
      */
@@ -52,7 +76,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @param alternate
      *     The alternate
      */
@@ -61,7 +85,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @return
      *     The cast
      */
@@ -70,7 +94,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @param cast
      *     The cast
      */
@@ -79,7 +103,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @return
      *     The reviews
      */
@@ -88,7 +112,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @param reviews
      *     The reviews
      */
@@ -97,7 +121,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @return
      *     The similar
      */
@@ -106,7 +130,7 @@ public class Links {
     }
 
     /**
-     * 
+     *
      * @param similar
      *     The similar
      */
@@ -114,4 +138,17 @@ public class Links {
         this.similar = similar;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.self);
+        dest.writeString(this.alternate);
+        dest.writeString(this.cast);
+        dest.writeString(this.reviews);
+        dest.writeString(this.similar);
+    }
 }
