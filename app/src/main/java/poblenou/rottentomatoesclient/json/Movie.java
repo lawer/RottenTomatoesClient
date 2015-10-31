@@ -26,7 +26,7 @@ public class Movie {
     private String mpaaRating;
     @SerializedName("runtime")
     @Expose
-    private Integer runtime;
+    private String runtime;
     @SerializedName("critics_consensus")
     @Expose
     private String criticsConsensus;
@@ -129,16 +129,16 @@ public class Movie {
      * @return
      *     The runtime
      */
-    public Integer getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
     /**
-     * 
+     *
      * @param runtime
      *     The runtime
      */
-    public void setRuntime(Integer runtime) {
+    public void setRuntime(String runtime) {
         this.runtime = runtime;
     }
 
