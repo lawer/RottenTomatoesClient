@@ -298,6 +298,13 @@ public class Movie {
         return builder.toString();
     }
 
+    public String getPoster() {
+        String chunga = getPosters().getOriginal();
+        String original = chunga.replaceAll("^.*?\\/[\\d]+x[\\d]+\\/", "http://");
+
+        return original;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +

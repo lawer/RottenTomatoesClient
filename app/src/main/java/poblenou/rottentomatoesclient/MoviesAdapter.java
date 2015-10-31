@@ -26,7 +26,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
 
         // Obtenim l'objecte en la possició corresponent
         Movie movie = getItem(position);
-        Log.w("XXXX", movie.toString());
+        //Log.w("XXXX", movie.toString());
 
         // Mirem a veure si la View s'està reusant, si no es així "inflem" la View
         // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView#row-view-recycling
@@ -45,7 +45,10 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         tvTitle.setText(movie.getTitle());
         tvCriticsScore.setText("Score: " + movie.getRatings().getCriticsScore() + "%");
         tvCast.setText(movie.getCast());
-        Picasso.with(getContext()).load(movie.getPosters().getDetailed()).into(ivPosterImage);
+
+        Log.w("XXXX", movie.getPoster());
+
+        Picasso.with(getContext()).load(movie.getPoster()).resize(120, 0).into(ivPosterImage);
 
         // Retornem la View replena per a mostrarla
         return convertView;

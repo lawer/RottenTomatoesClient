@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:adjustViewBounds="true"
-        android:maxHeight="70dp"
+        android:maxHeight="110dp"
         android:scaleType="fitXY" />
 
     <RelativeLayout
@@ -27,8 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:hint="The Dark Knight"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <TextView
             android:id="@+id/tvCriticsScore"
@@ -37,7 +36,7 @@
             android:layout_alignLeft="@+id/tvTitle"
             android:layout_below="@+id/tvTitle"
             android:hint="91%"
-            android:textSize="12sp" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
             android:id="@+id/tvCast"
@@ -47,7 +46,7 @@
             android:ellipsize="end"
             android:hint="Christian Bale, Joseph-Gordon Levitt, Heath Ledger, Maggie Gylenhall"
             android:maxLines="1"
-            android:textSize="12sp" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     </RelativeLayout>
 

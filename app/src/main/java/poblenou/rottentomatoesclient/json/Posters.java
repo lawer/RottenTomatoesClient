@@ -1,9 +1,10 @@
 
 package poblenou.rottentomatoesclient.json;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Posters {
@@ -93,4 +94,13 @@ public class Posters {
         this.original = original;
     }
 
+    @Override
+    public String toString() {
+        return "Posters{" +
+                "thumbnail='" + thumbnail + '\'' +
+                ", profile='" + profile + '\'' +
+                ", detailed='" + detailed + '\'' +
+                ", original='" + original + '\'' +
+                '}';
+    }
 }
