@@ -1,5 +1,6 @@
 package poblenou.rottentomatoesclient;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -10,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -52,6 +54,14 @@ public class MainActivityFragment extends Fragment {
                 items
         );
         lvPelis.setAdapter(adapter);
+
+        lvPelis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getContext(), DetailActivity.class);
+                startActivity(i);
+            }
+        });
 
         return rootView;
     }
