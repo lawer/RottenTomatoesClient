@@ -48,7 +48,7 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
 
         Log.w("XXXX", movie.getPoster());
 
-        Picasso.with(getContext()).load(movie.getPoster()).resize(120, 0).into(ivPosterImage);
+        Picasso.with(getContext()).load(movie.getPoster()).fit().into(ivPosterImage);
 
         // Retornem la View replena per a mostrarla
         return convertView;
