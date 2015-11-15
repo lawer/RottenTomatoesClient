@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import poblenou.rottentomatoesclient.json.Movie;
 public class MainActivityFragment extends Fragment {
     private ArrayList<Movie> items;
     private MoviesAdapter adapter;
+    private SwipeRefreshLayout srlRefresh;
 
     public MainActivityFragment() {
     }
@@ -64,6 +66,14 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
+        srlRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.srlRefresh);
+        srlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+
         return rootView;
     }
 
@@ -92,6 +102,8 @@ public class MainActivityFragment extends Fragment {
     private void refresh() {
         String pais = "es";
 
+        srlRefresh.setRefreshing(true);
+
         RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
@@ -101,5 +113,7 @@ public class MainActivityFragment extends Fragment {
         } else {
             apiClient.getProximesEstrenes(adapter, pais);
         }
+
+        srlRefresh.setRefreshing(false);
     }
 }
