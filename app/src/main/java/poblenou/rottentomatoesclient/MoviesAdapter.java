@@ -39,12 +39,12 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
         TextView tvCriticsScore = (TextView) convertView.findViewById(R.id.tvCriticsScore);
         TextView tvCast = (TextView) convertView.findViewById(R.id.tvCast);
-        ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ivPosterImage);
+        ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ivPosterSmall);
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         tvTitle.setText(movie.getTitle());
         tvCriticsScore.setText("Score: " + movie.getRatings().getCriticsScore() + "%");
-        tvCast.setText(movie.getCast());
+        //tvCast.setText(movie.getCast());
 
         Log.w("XXXX", movie.getPoster());
 

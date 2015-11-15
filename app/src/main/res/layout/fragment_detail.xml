@@ -8,9 +8,9 @@
     <!-- @drawable/large_movie_poster sourced from 
          http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg -->
     <ImageView
-        android:id="@+id/ivPosterImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/ivPoster"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
@@ -22,12 +22,13 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivPosterImage"
+        android:layout_alignTop="@+id/ivPoster"
         android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/ivPosterImage"
+        android:layout_toRightOf="@+id/ivPoster"
         android:text="The Dark Knight"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/tvCriticsScore"
@@ -37,7 +38,8 @@
         android:layout_below="@+id/tvTitle"
         android:layout_marginTop="5dp"
         android:text="Critics Score: 93%"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/tvAudienceScore"
@@ -47,7 +49,8 @@
         android:layout_below="@+id/tvCriticsScore"
         android:layout_marginTop="5dp"
         android:text="Audience Score: 93%"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/tvCast"
@@ -57,12 +60,13 @@
         android:layout_below="@+id/tvAudienceScore"
         android:layout_marginTop="5dp"
         android:text="Christian Bale, Joseph-Gordon Levitt"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivPosterImage"
+        android:layout_below="@+id/ivPoster"
         android:layout_margin="10dp">
 
         <LinearLayout
@@ -74,14 +78,16 @@
                 android:id="@+id/tvCriticsConsensus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This is an excellent movie that has action and romance" />
+                android:text="This is an excellent movie that has action and romance"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
 
             <TextView
                 android:id="@+id/tvSynopsis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="This is a story about a protagonist defeating an antagonist" />
+                android:text="This is a story about a protagonist defeating an antagonist"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
         </LinearLayout>
     </ScrollView>
 

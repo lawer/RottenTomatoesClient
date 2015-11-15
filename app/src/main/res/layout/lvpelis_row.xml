@@ -5,7 +5,7 @@
     android:padding="5dp">
 
     <ImageView
-        android:id="@+id/ivPosterImage"
+        android:id="@+id/ivPosterSmall"
         android:layout_width="75dp"
         android:layout_height="100dp"
         android:layout_centerVertical="true"
@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/ivPosterImage"
+        android:layout_toRightOf="@+id/ivPosterSmall"
         android:gravity="center_vertical">
 
         <TextView

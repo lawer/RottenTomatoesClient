@@ -54,9 +54,9 @@ public class Movie implements Parcelable {
     @SerializedName("posters")
     @Expose
     private Posters posters;
-    @SerializedName("abridged_cast")
-    @Expose
-    private List<AbridgedCast> abridgedCast = new ArrayList<AbridgedCast>();
+    //@SerializedName("abridged_cast")
+    //@Expose
+    //private List<AbridgedCast> abridgedCast = new ArrayList<AbridgedCast>();
     @SerializedName("alternate_ids")
     @Expose
     private AlternateIds alternateIds;
@@ -78,8 +78,8 @@ public class Movie implements Parcelable {
         this.ratings = in.readParcelable(Ratings.class.getClassLoader());
         this.synopsis = in.readString();
         this.posters = in.readParcelable(Posters.class.getClassLoader());
-        this.abridgedCast = new ArrayList<AbridgedCast>();
-        in.readList(this.abridgedCast, List.class.getClassLoader());
+        //this.abridgedCast = new ArrayList<AbridgedCast>();
+        //in.readList(this.abridgedCast, List.class.getClassLoader());
         this.alternateIds = in.readParcelable(AlternateIds.class.getClassLoader());
         this.links = in.readParcelable(Links.class.getClassLoader());
     }
@@ -269,18 +269,18 @@ public class Movie implements Parcelable {
      * @return
      *     The abridgedCast
      */
-    public List<AbridgedCast> getAbridgedCast() {
+    /*public List<AbridgedCast> getAbridgedCast() {
         return abridgedCast;
-    }
+    }*/
 
     /**
      *
      * @param abridgedCast
      *     The abridged_cast
      */
-    public void setAbridgedCast(List<AbridgedCast> abridgedCast) {
+    /*public void setAbridgedCast(List<AbridgedCast> abridgedCast) {
         this.abridgedCast = abridgedCast;
-    }
+    }*/
 
     /**
      *
@@ -318,7 +318,7 @@ public class Movie implements Parcelable {
         this.links = links;
     }
 
-    public String getCast() {
+    /*public String getCast() {
         StringBuilder builder = new StringBuilder();
         for (AbridgedCast actor : abridgedCast) {
             builder.append(actor.getName());
@@ -328,7 +328,7 @@ public class Movie implements Parcelable {
         builder.deleteCharAt(builder.length() - 1);
 
         return builder.toString();
-    }
+    }*/
 
     public String getPoster() {
         String chunga = getPosters().getOriginal();
@@ -350,7 +350,7 @@ public class Movie implements Parcelable {
                 ", ratings=" + ratings +
                 ", synopsis='" + synopsis + '\'' +
                 ", posters=" + posters +
-                ", abridgedCast=" + abridgedCast +
+                //", abridgedCast=" + abridgedCast +
                 ", alternateIds=" + alternateIds +
                 ", links=" + links +
                 '}';
@@ -373,7 +373,7 @@ public class Movie implements Parcelable {
         dest.writeParcelable(this.ratings, flags);
         dest.writeString(this.synopsis);
         dest.writeParcelable(this.posters, flags);
-        dest.writeList(this.abridgedCast);
+        //dest.writeList(this.abridgedCast);
         dest.writeParcelable(this.alternateIds, flags);
         dest.writeParcelable(this.links, flags);
     }
