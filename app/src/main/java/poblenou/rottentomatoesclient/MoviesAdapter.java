@@ -32,13 +32,13 @@ public class MoviesAdapter extends ArrayAdapter<Movie> {
         // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView#row-view-recycling
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.lvpelis_row, parent, false);
+            convertView = inflater.inflate(R.layout.lvpelis_item, parent, false);
         }
 
         // Unim el codi en les Views del Layout
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
         TextView tvCriticsScore = (TextView) convertView.findViewById(R.id.tvCriticsScore);
-        TextView tvCast = (TextView) convertView.findViewById(R.id.tvCast);
+        //TextView tvCast = (TextView) convertView.findViewById(R.id.tvCast);
         ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ivPosterSmall);
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout

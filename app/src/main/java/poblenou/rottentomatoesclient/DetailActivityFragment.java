@@ -31,7 +31,7 @@ public class DetailActivityFragment extends Fragment {
         ImageView ivPosterImage = (ImageView) view.findViewById(R.id.ivPoster);
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         TextView tvSynopsis = (TextView) view.findViewById(R.id.tvSynopsis);
-        TextView tvCast = (TextView) view.findViewById(R.id.tvCast);
+        //TextView tvCast = (TextView) view.findViewById(R.id.tvCast);
         TextView tvCriticsConsensus = (TextView) view.findViewById(R.id.tvCriticsConsensus);
         TextView tvAudienceScore = (TextView) view.findViewById(R.id.tvAudienceScore);
         TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);

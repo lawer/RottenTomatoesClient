@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -53,7 +52,7 @@ public class MainActivityFragment extends Fragment {
         items = new ArrayList<>();
         adapter = new MoviesAdapter(
                 getContext(),
-                R.layout.lvpelis_row,
+                R.layout.lvpelis_item,
                 items
         );
         lvPelis.setAdapter(adapter);
