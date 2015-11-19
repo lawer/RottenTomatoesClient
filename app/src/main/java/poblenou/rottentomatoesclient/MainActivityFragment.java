@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ListView lvPelis = (ListView) rootView.findViewById(R.id.lvPelis);
+        GridView lvPelis = (GridView) rootView.findViewById(R.id.gvPelis);
 
         items = new ArrayList<>();
         adapter = new MoviesAdapter(
