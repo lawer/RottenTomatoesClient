@@ -40,11 +40,13 @@ public class MainActivityFragment extends Fragment implements android.support.v4
         setHasOptionsMenu(true);
     }
 
+/*
     @Override
     public void onStart() {
         super.onStart();
         refresh();
     }
+*/
 
 
     @Override
