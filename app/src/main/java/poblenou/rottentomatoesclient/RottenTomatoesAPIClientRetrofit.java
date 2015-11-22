@@ -1,8 +1,11 @@
 package poblenou.rottentomatoesclient;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
 
 import poblenou.rottentomatoesclient.json.ApiData;
 import poblenou.rottentomatoesclient.json.Movie;
@@ -53,6 +56,7 @@ public class RottenTomatoesAPIClientRetrofit {
 
                                  long syncTime = System.currentTimeMillis();
 
+                                 ArrayList<ContentValues> valuesList= new ArrayList<>();
                                  for (Movie peli : apiData.getMovies()) {
                                      MoviesContentValues values = new MoviesContentValues();
 
@@ -64,12 +68,14 @@ public class RottenTomatoesAPIClientRetrofit {
                                      values.putReleasedate(peli.getReleaseDates().getTheater());
                                      values.putSynopsis(peli.getSynopsis());
                                      values.putSynctime(syncTime);
-
-                                     context.getContentResolver().insert(
-                                             MoviesColumns.CONTENT_URI,
-                                             values.values()
-                                     );
                                  }
+
+                                 context.getContentResolver().bulkInsert(
+                                         MoviesColumns.CONTENT_URI,
+                                         valuesList.toArray(
+                                                 new ContentValues[valuesList.size()]
+                                         )
+                                 );
                              } else {
                                  Log.e("XXX", response.errorBody().toString());
                              }
