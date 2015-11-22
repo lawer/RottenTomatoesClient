@@ -1,0 +1,13 @@
+{
+  "syntaxVersion": 3,
+  "projectPackageId": "poblenou.rottentomatoesclient",
+  "authority": "poblenou.rottentomatoesclient.provider",
+  "providerJavaPackage": "poblenou.rottentomatoesclient.provider",
+  "providerClassName": "MoviesProvider",
+  "sqliteOpenHelperClassName": "MoviesSQLiteOpenHelper",
+  "sqliteOpenHelperCallbacksClassName": "MoviesSQLiteOpenHelperCallbacks",
+  "databaseFileName": "movies.db",
+  "databaseVersion": 1,
+  "enableForeignKeys": true,
+  "useAnnotations": true
+}
