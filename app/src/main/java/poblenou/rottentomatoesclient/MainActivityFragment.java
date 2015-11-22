@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
  */
 public class MainActivityFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
     private ArrayList<Movie> items;
-    private SimpleCursorAdapter adapter;
+    private MoviesCursorAdapter adapter;
     private SwipeRefreshLayout srlRefresh;
 
     public MainActivityFragment() {
@@ -57,7 +56,7 @@ public class MainActivityFragment extends Fragment implements android.support.v4
         GridView lvPelis = (GridView) rootView.findViewById(R.id.gvPelis);
 
         items = new ArrayList<>();
-        adapter = new SimpleCursorAdapter(
+        adapter = new MoviesCursorAdapter(
                 getContext(),
                 R.layout.lvpelis_item,
                 null,
