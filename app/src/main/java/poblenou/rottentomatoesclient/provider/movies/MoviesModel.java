@@ -55,6 +55,13 @@ public interface MoviesModel extends BaseModel {
     String getReleasedate();
 
     /**
+     * Get the {@code posterurl} value.
+     * Can be {@code null}.
+     */
+    @Nullable
+    String getPosterurl();
+
+    /**
      * Get the {@code synctime} value.
      * Can be {@code null}.
      */

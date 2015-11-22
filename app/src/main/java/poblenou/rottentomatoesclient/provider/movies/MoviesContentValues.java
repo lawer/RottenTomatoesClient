@@ -99,6 +99,16 @@ public class MoviesContentValues extends AbstractContentValues {
         return this;
     }
 
+    public MoviesContentValues putPosterurl(@Nullable String value) {
+        mContentValues.put(MoviesColumns.POSTERURL, value);
+        return this;
+    }
+
+    public MoviesContentValues putPosterurlNull() {
+        mContentValues.putNull(MoviesColumns.POSTERURL);
+        return this;
+    }
+
     public MoviesContentValues putSynctime(@Nullable Date value) {
         mContentValues.put(MoviesColumns.SYNCTIME, value == null ? null : value.getTime());
         return this;

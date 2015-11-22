@@ -30,10 +30,12 @@ public class MoviesColumns implements BaseColumns {
 
     public static final String RELEASEDATE = "releaseDate";
 
+    public static final String POSTERURL = "posterUrl";
+
     public static final String SYNCTIME = "syncTime";
 
 
-    public static final String DEFAULT_ORDER = TABLE_NAME + "" +_ID;
+    public static final String DEFAULT_ORDER = TABLE_NAME + "." +_ID;
 
     // @formatter:off
     public static final String[] ALL_COLUMNS = new String[] {
@@ -44,6 +46,7 @@ public class MoviesColumns implements BaseColumns {
             CONSENSUS,
             SYNOPSIS,
             RELEASEDATE,
+            POSTERURL,
             SYNCTIME
     };
     // @formatter:on
@@ -51,13 +54,14 @@ public class MoviesColumns implements BaseColumns {
     public static boolean hasColumns(String[] projection) {
         if (projection == null) return true;
         for (String c : projection) {
-            if (c.equals(TITLE) || c.contains("" + TITLE)) return true;
-            if (c.equals(CRITICSSCORE) || c.contains("" + CRITICSSCORE)) return true;
-            if (c.equals(AUDIENCESCORE) || c.contains("" + AUDIENCESCORE)) return true;
-            if (c.equals(CONSENSUS) || c.contains("" + CONSENSUS)) return true;
-            if (c.equals(SYNOPSIS) || c.contains("" + SYNOPSIS)) return true;
-            if (c.equals(RELEASEDATE) || c.contains("" + RELEASEDATE)) return true;
-            if (c.equals(SYNCTIME) || c.contains("" + SYNCTIME)) return true;
+            if (c.equals(TITLE) || c.contains("." + TITLE)) return true;
+            if (c.equals(CRITICSSCORE) || c.contains("." + CRITICSSCORE)) return true;
+            if (c.equals(AUDIENCESCORE) || c.contains("." + AUDIENCESCORE)) return true;
+            if (c.equals(CONSENSUS) || c.contains("." + CONSENSUS)) return true;
+            if (c.equals(SYNOPSIS) || c.contains("." + SYNOPSIS)) return true;
+            if (c.equals(RELEASEDATE) || c.contains("." + RELEASEDATE)) return true;
+            if (c.equals(POSTERURL) || c.contains("." + POSTERURL)) return true;
+            if (c.equals(SYNCTIME) || c.contains("." + SYNCTIME)) return true;
         }
         return false;
     }

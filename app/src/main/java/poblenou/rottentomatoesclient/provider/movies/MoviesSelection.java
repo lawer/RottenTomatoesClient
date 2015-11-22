@@ -318,6 +318,46 @@ public class MoviesSelection extends AbstractSelection<MoviesSelection> {
         return this;
     }
 
+    public MoviesSelection posterurl(String... value) {
+        addEquals(MoviesColumns.POSTERURL, value);
+        return this;
+    }
+
+    public MoviesSelection posterurlNot(String... value) {
+        addNotEquals(MoviesColumns.POSTERURL, value);
+        return this;
+    }
+
+    public MoviesSelection posterurlLike(String... value) {
+        addLike(MoviesColumns.POSTERURL, value);
+        return this;
+    }
+
+    public MoviesSelection posterurlContains(String... value) {
+        addContains(MoviesColumns.POSTERURL, value);
+        return this;
+    }
+
+    public MoviesSelection posterurlStartsWith(String... value) {
+        addStartsWith(MoviesColumns.POSTERURL, value);
+        return this;
+    }
+
+    public MoviesSelection posterurlEndsWith(String... value) {
+        addEndsWith(MoviesColumns.POSTERURL, value);
+        return this;
+    }
+
+    public MoviesSelection orderByPosterurl(boolean desc) {
+        orderBy(MoviesColumns.POSTERURL, desc);
+        return this;
+    }
+
+    public MoviesSelection orderByPosterurl() {
+        orderBy(MoviesColumns.POSTERURL, false);
+        return this;
+    }
+
     public MoviesSelection synctime(Date... value) {
         addEquals(MoviesColumns.SYNCTIME, value);
         return this;

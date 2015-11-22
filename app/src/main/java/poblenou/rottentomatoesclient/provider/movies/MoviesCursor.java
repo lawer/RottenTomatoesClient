@@ -87,6 +87,16 @@ public class MoviesCursor extends AbstractCursor implements MoviesModel {
     }
 
     /**
+     * Get the {@code posterurl} value.
+     * Can be {@code null}.
+     */
+    @Nullable
+    public String getPosterurl() {
+        String res = getStringOrNull(MoviesColumns.POSTERURL);
+        return res;
+    }
+
+    /**
      * Get the {@code synctime} value.
      * Can be {@code null}.
      */

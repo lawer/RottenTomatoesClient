@@ -31,6 +31,7 @@ public class MoviesSQLiteOpenHelper extends SQLiteOpenHelper {
             + MoviesColumns.CONSENSUS + " TEXT, "
             + MoviesColumns.SYNOPSIS + " TEXT, "
             + MoviesColumns.RELEASEDATE + " TEXT, "
+            + MoviesColumns.POSTERURL + " TEXT, "
             + MoviesColumns.SYNCTIME + " INTEGER "
             + " );";
 

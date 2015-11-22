@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 
 import poblenou.rottentomatoesclient.json.ApiData;
 import poblenou.rottentomatoesclient.json.Movie;
+import poblenou.rottentomatoesclient.provider.movies.MoviesContentValues;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -46,9 +47,15 @@ public class RottenTomatoesAPIClientRetrofit {
                              if (response.isSuccess()) {
                                  ApiData apiData = response.body();
 
-                                 adapter.clear();
                                  for (Movie peli : apiData.getMovies()) {
-                                     adapter.add(peli);
+                                     MoviesContentValues values = new MoviesContentValues();
+                                     values.putTitle(peli.getTitle());
+                                     values.putAudiencescore(peli.getRatings().getAudienceScore());
+                                     values.putConsensus(peli.getCriticsConsensus());
+                                     values.putCriticsscore(peli.getRatings().getCriticsScore());
+                                     values.putPosterurl(peli.getPoster());
+                                     values.putReleasedate(peli.getReleaseDates().getTheater());
+                                     values.putSynopsis(peli.getSynopsis());
                                  }
                              } else {
                                  Log.e("XXX", response.errorBody().toString());
