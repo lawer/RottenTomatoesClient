@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import poblenou.rottentomatoesclient.json.ApiData;
@@ -71,7 +73,13 @@ public class RottenTomatoesAPIClientRetrofit {
                                      context.getContentResolver().insert(
                                              MoviesColumns.CONTENT_URI,
                                              values.values());
+
+                                     Picasso.with(context).load(peli.getPoster()).fetch();
                                  }
+                                 context.getContentResolver().delete(
+                                         MoviesColumns.CONTENT_URI,
+                                         MoviesColumns.SYNCTIME + " < ?",
+                                         new String[]{Long.toString(syncTime)});
                              } else {
                                  Log.e("XXX", response.errorBody().toString());
                              }
