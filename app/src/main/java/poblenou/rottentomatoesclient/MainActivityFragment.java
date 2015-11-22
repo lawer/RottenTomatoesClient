@@ -2,9 +2,11 @@ package poblenou.rottentomatoesclient;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,17 +16,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
 
 import poblenou.rottentomatoesclient.json.Movie;
+import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
     private ArrayList<Movie> items;
-    private MoviesAdapter adapter;
+    private SimpleCursorAdapter adapter;
     private SwipeRefreshLayout srlRefresh;
 
     public MainActivityFragment() {
@@ -42,6 +46,7 @@ public class MainActivityFragment extends Fragment {
         refresh();
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,18 +55,32 @@ public class MainActivityFragment extends Fragment {
         GridView lvPelis = (GridView) rootView.findViewById(R.id.gvPelis);
 
         items = new ArrayList<>();
-        adapter = new MoviesAdapter(
+        adapter = new SimpleCursorAdapter(
                 getContext(),
                 R.layout.lvpelis_item,
-                items
+                null,
+                new String[] {
+                        MoviesColumns.POSTERURL,
+                        MoviesColumns.TITLE,
+                        MoviesColumns.AUDIENCESCORE
+                },
+                new int[] {
+                        R.id.ivPosterSmall,
+                        R.id.tvTitle,
+                        R.id.tvCriticsScore
+                },
+                0
         );
+        //Inicialitzem el Loader
+        getLoaderManager().initLoader(0, null, this);
+
         lvPelis.setAdapter(adapter);
 
         lvPelis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getContext(), DetailActivity.class);
-                i.putExtra("movie", adapter.getItem(position));
+                i.putExtra("movie_id", id);
                 startActivity(i);
             }
         });
@@ -109,11 +128,29 @@ public class MainActivityFragment extends Fragment {
         String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
 
         if (tipusConsulta.equals("vistes")) {
-            apiClient.getPeliculesMesVistes(adapter, pais);
+            apiClient.getPeliculesMesVistes(pais);
         } else {
-            apiClient.getProximesEstrenes(adapter, pais);
+            apiClient.getProximesEstrenes(pais);
         }
 
         srlRefresh.setRefreshing(false);
     }
+
+    @Override
+    public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(),
+                MoviesColumns.CONTENT_URI, null, null, null, null);
+
+    }
+
+    @Override
+    public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
+        adapter.swapCursor(null);
+    }
+
 }

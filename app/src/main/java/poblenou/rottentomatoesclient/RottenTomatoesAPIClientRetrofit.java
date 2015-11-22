@@ -3,7 +3,6 @@ package poblenou.rottentomatoesclient;
 import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -36,18 +35,18 @@ public class RottenTomatoesAPIClientRetrofit {
         this.context = context;
     }
 
-    public void getPeliculesMesVistes(final ArrayAdapter<Movie> adapter, String pais) {
+    public void getPeliculesMesVistes(String pais) {
         Call<ApiData> call = servei.getPeliculesMesVistes(pais, API_KEY);
-        processCall(adapter, call);
+        processCall(call);
     }
 
-    public void getProximesEstrenes(final ArrayAdapter<Movie> adapter, String pais) {
+    public void getProximesEstrenes(String pais) {
         Call<ApiData> call = servei.getProximesEstrenes(pais, API_KEY);
-        processCall(adapter, call);
+        processCall(call);
     }
 
 
-    private void processCall(final ArrayAdapter<Movie> adapter, Call<ApiData> call) {
+    private void processCall(Call<ApiData> call) {
         call.enqueue(new Callback<ApiData>() {
                          @Override
                          public void onResponse(Response<ApiData> response, Retrofit retrofit) {
@@ -56,7 +55,7 @@ public class RottenTomatoesAPIClientRetrofit {
 
                                  long syncTime = System.currentTimeMillis();
 
-                                 ArrayList<ContentValues> valuesList= new ArrayList<>();
+                                 ArrayList<ContentValues> valuesList = new ArrayList<>();
                                  for (Movie peli : apiData.getMovies()) {
                                      MoviesContentValues values = new MoviesContentValues();
 
@@ -68,14 +67,11 @@ public class RottenTomatoesAPIClientRetrofit {
                                      values.putReleasedate(peli.getReleaseDates().getTheater());
                                      values.putSynopsis(peli.getSynopsis());
                                      values.putSynctime(syncTime);
-                                 }
 
-                                 context.getContentResolver().bulkInsert(
-                                         MoviesColumns.CONTENT_URI,
-                                         valuesList.toArray(
-                                                 new ContentValues[valuesList.size()]
-                                         )
-                                 );
+                                     context.getContentResolver().insert(
+                                             MoviesColumns.CONTENT_URI,
+                                             values.values());
+                                 }
                              } else {
                                  Log.e("XXX", response.errorBody().toString());
                              }

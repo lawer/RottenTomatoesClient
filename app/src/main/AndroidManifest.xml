@@ -37,6 +37,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="poblenou.rottentomatoesclient.MainActivity" />
         </activity>
+
+        <provider
+            android:name="poblenou.rottentomatoesclient.provider.MoviesProvider"
+            android:authorities="poblenou.rottentomatoesclient.provider"
+            android:exported="false" />
     </application>
 
 </manifest>
