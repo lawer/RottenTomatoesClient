@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 
 import poblenou.rottentomatoesclient.json.ApiData;
 import poblenou.rottentomatoesclient.json.Movie;
+import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 import poblenou.rottentomatoesclient.provider.movies.MoviesContentValues;
 import retrofit.Call;
 import retrofit.Callback;
@@ -64,6 +65,10 @@ public class RottenTomatoesAPIClientRetrofit {
                                      values.putSynopsis(peli.getSynopsis());
                                      values.putSynctime(syncTime);
 
+                                     context.getContentResolver().insert(
+                                             MoviesColumns.CONTENT_URI,
+                                             values.values()
+                                     );
                                  }
                              } else {
                                  Log.e("XXX", response.errorBody().toString());
