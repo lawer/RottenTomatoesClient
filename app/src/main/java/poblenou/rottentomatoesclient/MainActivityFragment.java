@@ -104,7 +104,7 @@ public class MainActivityFragment extends Fragment {
 
         srlRefresh.setRefreshing(true);
 
-        RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit();
+        RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit(getContext());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
 

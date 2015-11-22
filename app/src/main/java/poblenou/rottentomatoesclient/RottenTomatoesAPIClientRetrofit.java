@@ -1,5 +1,6 @@
 package poblenou.rottentomatoesclient;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -17,6 +18,7 @@ import retrofit.http.Query;
 public class RottenTomatoesAPIClientRetrofit {
     final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/";
     final String API_KEY = "9htuhtcb4ymusd73d4z6jxcj";
+    private final Context context;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -25,8 +27,9 @@ public class RottenTomatoesAPIClientRetrofit {
 
     RottenTomatoesInterface servei = retrofit.create(RottenTomatoesInterface.class);
 
-    public RottenTomatoesAPIClientRetrofit() {
+    public RottenTomatoesAPIClientRetrofit(Context context) {
         super();
+        this.context = context;
     }
 
     public void getPeliculesMesVistes(final ArrayAdapter<Movie> adapter, String pais) {
@@ -47,8 +50,11 @@ public class RottenTomatoesAPIClientRetrofit {
                              if (response.isSuccess()) {
                                  ApiData apiData = response.body();
 
+                                 long syncTime = System.currentTimeMillis();
+
                                  for (Movie peli : apiData.getMovies()) {
                                      MoviesContentValues values = new MoviesContentValues();
+
                                      values.putTitle(peli.getTitle());
                                      values.putAudiencescore(peli.getRatings().getAudienceScore());
                                      values.putConsensus(peli.getCriticsConsensus());
@@ -56,6 +62,8 @@ public class RottenTomatoesAPIClientRetrofit {
                                      values.putPosterurl(peli.getPoster());
                                      values.putReleasedate(peli.getReleaseDates().getTheater());
                                      values.putSynopsis(peli.getSynopsis());
+                                     values.putSynctime(syncTime);
+
                                  }
                              } else {
                                  Log.e("XXX", response.errorBody().toString());
