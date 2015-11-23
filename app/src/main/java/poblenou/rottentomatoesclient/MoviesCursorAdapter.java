@@ -40,13 +40,13 @@ public class MoviesCursorAdapter extends SimpleCursorAdapter {
 
         // Unim el codi en les Views del Layout
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-        TextView tvCriticsScore = (TextView) convertView.findViewById(R.id.tvCriticsScore);
+        TextView tvReleaseDate = (TextView) convertView.findViewById(R.id.tvReleaseDate);
         //TextView tvCast = (TextView) convertView.findViewById(R.id.tvCast);
         ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ivPosterSmall);
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         tvTitle.setText(moviesCursor.getTitle());
-        tvCriticsScore.setText("Score: " + moviesCursor.getCriticsscore() + "%");
+        tvReleaseDate.setText("Release Date: " + moviesCursor.getReleasedate());
         Picasso.with(context).load(moviesCursor.getPosterurl()).fit().into(ivPosterImage);
 
         // Retornem la View replena per a mostrarla
