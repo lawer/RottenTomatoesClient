@@ -13,14 +13,7 @@ import poblenou.rottentomatoesclient.BuildConfig;
 import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 
 public class MoviesSQLiteOpenHelper extends SQLiteOpenHelper {
-    private static final String TAG = MoviesSQLiteOpenHelper.class.getSimpleName();
-
     public static final String DATABASE_FILE_NAME = "movies.db";
-    private static final int DATABASE_VERSION = 1;
-    private static MoviesSQLiteOpenHelper sInstance;
-    private final Context mContext;
-    private final MoviesSQLiteOpenHelperCallbacks mOpenHelperCallbacks;
-
     // @formatter:off
     public static final String SQL_CREATE_TABLE_MOVIES = "CREATE TABLE IF NOT EXISTS "
             + MoviesColumns.TABLE_NAME + " ( "
@@ -32,10 +25,29 @@ public class MoviesSQLiteOpenHelper extends SQLiteOpenHelper {
             + MoviesColumns.SYNOPSIS + " TEXT, "
             + MoviesColumns.RELEASEDATE + " TEXT, "
             + MoviesColumns.POSTERURL + " TEXT, "
-            + MoviesColumns.SYNCTIME + " INTEGER "
+            + MoviesColumns.SYNCTIME + " INTEGER, "
+            + MoviesColumns.MOVIELIST + " TEXT "
             + " );";
+    private static final String TAG = MoviesSQLiteOpenHelper.class.getSimpleName();
+    private static final int DATABASE_VERSION = 1;
+    private static MoviesSQLiteOpenHelper sInstance;
+    private final Context mContext;
+    private final MoviesSQLiteOpenHelperCallbacks mOpenHelperCallbacks;
 
     // @formatter:on
+
+    private MoviesSQLiteOpenHelper(Context context) {
+        super(context, DATABASE_FILE_NAME, null, DATABASE_VERSION);
+        mContext = context;
+        mOpenHelperCallbacks = new MoviesSQLiteOpenHelperCallbacks();
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private MoviesSQLiteOpenHelper(Context context, DatabaseErrorHandler errorHandler) {
+        super(context, DATABASE_FILE_NAME, null, DATABASE_VERSION, errorHandler);
+        mContext = context;
+        mOpenHelperCallbacks = new MoviesSQLiteOpenHelperCallbacks();
+    }
 
     public static MoviesSQLiteOpenHelper getInstance(Context context) {
         // Use the application context, which will ensure that you
@@ -54,20 +66,12 @@ public class MoviesSQLiteOpenHelper extends SQLiteOpenHelper {
         return newInstancePostHoneycomb(context);
     }
 
-
     /*
      * Pre Honeycomb.
      */
     private static MoviesSQLiteOpenHelper newInstancePreHoneycomb(Context context) {
         return new MoviesSQLiteOpenHelper(context);
     }
-
-    private MoviesSQLiteOpenHelper(Context context) {
-        super(context, DATABASE_FILE_NAME, null, DATABASE_VERSION);
-        mContext = context;
-        mOpenHelperCallbacks = new MoviesSQLiteOpenHelperCallbacks();
-    }
-
 
     /*
      * Post Honeycomb.
@@ -76,14 +80,6 @@ public class MoviesSQLiteOpenHelper extends SQLiteOpenHelper {
     private static MoviesSQLiteOpenHelper newInstancePostHoneycomb(Context context) {
         return new MoviesSQLiteOpenHelper(context, new DefaultDatabaseErrorHandler());
     }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private MoviesSQLiteOpenHelper(Context context, DatabaseErrorHandler errorHandler) {
-        super(context, DATABASE_FILE_NAME, null, DATABASE_VERSION, errorHandler);
-        mContext = context;
-        mOpenHelperCallbacks = new MoviesSQLiteOpenHelperCallbacks();
-    }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {

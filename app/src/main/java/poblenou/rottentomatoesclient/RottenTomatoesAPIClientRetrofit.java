@@ -40,11 +40,11 @@ public class RottenTomatoesAPIClientRetrofit {
     public void getPelicules(String pais) {
         Call<ApiData> callMesVistes = servei.getPeliculesMesVistes(pais, API_KEY);
         Call<ApiData> callProximesEstrenes = servei.getProximesEstrenes(pais, API_KEY);
-        processCall(callMesVistes);
-        processCall(callProximesEstrenes);
+        processCall(callMesVistes, "mes_vistes");
+        processCall(callProximesEstrenes, "proximes_estrenes");
     }
 
-    private void processCall(Call<ApiData> call) {
+    private void processCall(Call<ApiData> call, final String movieList) {
         call.enqueue(new Callback<ApiData>() {
                          @Override
                          public void onResponse(Response<ApiData> response, Retrofit retrofit) {
@@ -65,6 +65,7 @@ public class RottenTomatoesAPIClientRetrofit {
                                      values.putReleasedate(peli.getReleaseDates().getTheater());
                                      values.putSynopsis(peli.getSynopsis());
                                      values.putSynctime(syncTime);
+                                     values.putMovielist(movieList);
 
                                      context.getContentResolver().insert(
                                              MoviesColumns.CONTENT_URI,

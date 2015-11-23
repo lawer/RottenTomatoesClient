@@ -1,11 +1,11 @@
 package poblenou.rottentomatoesclient.provider.movies;
 
-import java.util.Date;
-
-import android.content.Context;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
+import java.util.Date;
 
 import poblenou.rottentomatoesclient.provider.base.AbstractSelection;
 
@@ -400,6 +400,46 @@ public class MoviesSelection extends AbstractSelection<MoviesSelection> {
 
     public MoviesSelection orderBySynctime() {
         orderBy(MoviesColumns.SYNCTIME, false);
+        return this;
+    }
+
+    public MoviesSelection movielist(String... value) {
+        addEquals(MoviesColumns.MOVIELIST, value);
+        return this;
+    }
+
+    public MoviesSelection movielistNot(String... value) {
+        addNotEquals(MoviesColumns.MOVIELIST, value);
+        return this;
+    }
+
+    public MoviesSelection movielistLike(String... value) {
+        addLike(MoviesColumns.MOVIELIST, value);
+        return this;
+    }
+
+    public MoviesSelection movielistContains(String... value) {
+        addContains(MoviesColumns.MOVIELIST, value);
+        return this;
+    }
+
+    public MoviesSelection movielistStartsWith(String... value) {
+        addStartsWith(MoviesColumns.MOVIELIST, value);
+        return this;
+    }
+
+    public MoviesSelection movielistEndsWith(String... value) {
+        addEndsWith(MoviesColumns.MOVIELIST, value);
+        return this;
+    }
+
+    public MoviesSelection orderByMovielist(boolean desc) {
+        orderBy(MoviesColumns.MOVIELIST, desc);
+        return this;
+    }
+
+    public MoviesSelection orderByMovielist() {
+        orderBy(MoviesColumns.MOVIELIST, false);
         return this;
     }
 }

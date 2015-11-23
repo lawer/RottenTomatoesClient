@@ -1,11 +1,10 @@
 package poblenou.rottentomatoesclient.provider.movies;
 
-import poblenou.rottentomatoesclient.provider.base.BaseModel;
+import android.support.annotation.Nullable;
 
 import java.util.Date;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import poblenou.rottentomatoesclient.provider.base.BaseModel;
 
 /**
  * Data model for the {@code movies} table.
@@ -67,4 +66,11 @@ public interface MoviesModel extends BaseModel {
      */
     @Nullable
     Date getSynctime();
+
+    /**
+     * Get the {@code movielist} value.
+     * Can be {@code null}.
+     */
+    @Nullable
+    String getMovielist();
 }

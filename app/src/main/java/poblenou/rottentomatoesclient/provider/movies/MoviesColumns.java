@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 import poblenou.rottentomatoesclient.provider.MoviesProvider;
-import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 
 /**
  * Columns for the {@code movies} table.
@@ -34,6 +33,8 @@ public class MoviesColumns implements BaseColumns {
 
     public static final String SYNCTIME = "syncTime";
 
+    public static final String MOVIELIST = "movieList";
+
 
     public static final String DEFAULT_ORDER = TABLE_NAME + "." +_ID;
 
@@ -47,7 +48,8 @@ public class MoviesColumns implements BaseColumns {
             SYNOPSIS,
             RELEASEDATE,
             POSTERURL,
-            SYNCTIME
+            SYNCTIME,
+            MOVIELIST
     };
     // @formatter:on
 
@@ -62,6 +64,7 @@ public class MoviesColumns implements BaseColumns {
             if (c.equals(RELEASEDATE) || c.contains("." + RELEASEDATE)) return true;
             if (c.equals(POSTERURL) || c.contains("." + POSTERURL)) return true;
             if (c.equals(SYNCTIME) || c.contains("." + SYNCTIME)) return true;
+            if (c.equals(MOVIELIST) || c.contains("." + MOVIELIST)) return true;
         }
         return false;
     }

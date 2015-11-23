@@ -1,10 +1,9 @@
 package poblenou.rottentomatoesclient.provider.movies;
 
-import java.util.Date;
-
 import android.database.Cursor;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import java.util.Date;
 
 import poblenou.rottentomatoesclient.provider.base.AbstractCursor;
 
@@ -103,6 +102,16 @@ public class MoviesCursor extends AbstractCursor implements MoviesModel {
     @Nullable
     public Date getSynctime() {
         Date res = getDateOrNull(MoviesColumns.SYNCTIME);
+        return res;
+    }
+
+    /**
+     * Get the {@code movielist} value.
+     * Can be {@code null}.
+     */
+    @Nullable
+    public String getMovielist() {
+        String res = getStringOrNull(MoviesColumns.MOVIELIST);
         return res;
     }
 }

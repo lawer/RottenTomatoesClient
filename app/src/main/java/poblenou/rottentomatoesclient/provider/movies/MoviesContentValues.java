@@ -1,12 +1,11 @@
 package poblenou.rottentomatoesclient.provider.movies;
 
-import java.util.Date;
-
-import android.content.Context;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import java.util.Date;
 
 import poblenou.rottentomatoesclient.provider.base.AbstractContentValues;
 
@@ -121,6 +120,16 @@ public class MoviesContentValues extends AbstractContentValues {
 
     public MoviesContentValues putSynctime(@Nullable Long value) {
         mContentValues.put(MoviesColumns.SYNCTIME, value);
+        return this;
+    }
+
+    public MoviesContentValues putMovielist(@Nullable String value) {
+        mContentValues.put(MoviesColumns.MOVIELIST, value);
+        return this;
+    }
+
+    public MoviesContentValues putMovielistNull() {
+        mContentValues.putNull(MoviesColumns.MOVIELIST);
         return this;
     }
 }

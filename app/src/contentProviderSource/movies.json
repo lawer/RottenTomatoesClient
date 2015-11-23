@@ -31,6 +31,10 @@
     {
       "name": "syncTime",
       "type": "Date"
+    },
+    {
+      "name": "movieList",
+      "type": "String"
     }
   ]
 }
