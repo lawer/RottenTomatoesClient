@@ -37,16 +37,12 @@ public class RottenTomatoesAPIClientRetrofit {
         this.context = context;
     }
 
-    public void getPeliculesMesVistes(String pais) {
-        Call<ApiData> call = servei.getPeliculesMesVistes(pais, API_KEY);
-        processCall(call);
+    public void getPelicules(String pais) {
+        Call<ApiData> callMesVistes = servei.getPeliculesMesVistes(pais, API_KEY);
+        Call<ApiData> callProximesEstrenes = servei.getProximesEstrenes(pais, API_KEY);
+        processCall(callMesVistes);
+        processCall(callProximesEstrenes);
     }
-
-    public void getProximesEstrenes(String pais) {
-        Call<ApiData> call = servei.getProximesEstrenes(pais, API_KEY);
-        processCall(call);
-    }
-
 
     private void processCall(Call<ApiData> call) {
         call.enqueue(new Callback<ApiData>() {

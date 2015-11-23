@@ -126,13 +126,15 @@ public class MainActivityFragment extends Fragment implements android.support.v4
 
         RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit(getContext());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
+        /*String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
 
         if (tipusConsulta.equals("vistes")) {
             apiClient.getPeliculesMesVistes(pais);
         } else {
             apiClient.getProximesEstrenes(pais);
-        }
+        }*/
+
+        apiClient.getPelicules(pais);
 
         srlRefresh.setRefreshing(false);
     }
