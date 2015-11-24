@@ -6,12 +6,13 @@ import android.util.Log;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+
 import poblenou.rottentomatoesclient.json.ApiData;
 import poblenou.rottentomatoesclient.json.Movie;
 import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 import poblenou.rottentomatoesclient.provider.movies.MoviesContentValues;
 import retrofit.Call;
-import retrofit.Callback;
 import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
@@ -48,43 +49,38 @@ public class RottenTomatoesAPIClientRetrofit {
     }
 
     private void processCall(Call<ApiData> call, final String movieList, final long syncTime) {
-        call.enqueue(new Callback<ApiData>() {
-                         @Override
-                         public void onResponse(Response<ApiData> response, Retrofit retrofit) {
-                             if (response.isSuccess()) {
-                                 ApiData apiData = response.body();
+        try {
+            Response<ApiData> response = call.execute();
 
-                                 for (Movie peli : apiData.getMovies()) {
-                                     MoviesContentValues values = new MoviesContentValues();
+            if (response.isSuccess()) {
+                ApiData apiData = response.body();
 
-                                     values.putTitle(peli.getTitle());
-                                     values.putAudiencescore(peli.getRatings().getAudienceScore());
-                                     values.putConsensus(peli.getCriticsConsensus());
-                                     values.putCriticsscore(peli.getRatings().getCriticsScore());
-                                     values.putPosterurl(peli.getPoster());
-                                     values.putReleasedate(peli.getReleaseDates().getTheater());
-                                     values.putSynopsis(peli.getSynopsis());
-                                     values.putSynctime(syncTime);
-                                     values.putMovielist(movieList);
+                for (Movie peli : apiData.getMovies()) {
+                    MoviesContentValues values = new MoviesContentValues();
 
-                                     context.getContentResolver().insert(
-                                             MoviesColumns.CONTENT_URI,
-                                             values.values());
+                    values.putTitle(peli.getTitle());
+                    values.putAudiencescore(peli.getRatings().getAudienceScore());
+                    values.putConsensus(peli.getCriticsConsensus());
+                    values.putCriticsscore(peli.getRatings().getCriticsScore());
+                    values.putPosterurl(peli.getPoster());
+                    values.putReleasedate(peli.getReleaseDates().getTheater());
+                    values.putSynopsis(peli.getSynopsis());
+                    values.putSynctime(syncTime);
+                    values.putMovielist(movieList);
 
-                                     Picasso.with(context).load(peli.getPoster()).fetch();
-                                 }
-                             } else {
-                                 Log.e("XXX", response.errorBody().toString());
-                             }
-                         }
+                    context.getContentResolver().insert(
+                            MoviesColumns.CONTENT_URI,
+                            values.values());
 
-                         @Override
-                         public void onFailure(Throwable t) {
-                             t.printStackTrace();
-                         }
-                     }
+                    Picasso.with(context).load(peli.getPoster()).fetch();
+                }
+            } else {
+                Log.e("XXX", response.errorBody().toString());
+            }
 
-        );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     interface RottenTomatoesInterface {
