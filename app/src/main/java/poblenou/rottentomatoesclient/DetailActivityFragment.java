@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
 
 import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
@@ -33,9 +35,9 @@ public class DetailActivityFragment extends Fragment {
         ImageView ivPosterImage = (ImageView) view.findViewById(R.id.ivPoster);
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         TextView tvSynopsis = (TextView) view.findViewById(R.id.tvSynopsis);
-        TextView tvCriticsConsensus = (TextView) view.findViewById(R.id.tvCriticsConsensus);
         TextView tvAudienceScore = (TextView) view.findViewById(R.id.tvAudienceScore);
         TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
+        LinearLayout llTitleScores = (LinearLayout) view.findViewById(R.id.llTitleScores);
 
         // Load movie data
         Long movie_id = getActivity().getIntent().getLongExtra("movie_id", -1);
@@ -61,13 +63,20 @@ public class DetailActivityFragment extends Fragment {
         );
         //tvCast.setText(movie.getCastList());
         tvSynopsis.setText(Html.fromHtml("<b>Synopsis:</b> " + moviesCursor.getSynopsis()));
-        tvCriticsConsensus.setText(Html.fromHtml("<b>Consensus:</b> " + moviesCursor.getConsensus()));
+
         // R.drawable.large_movie_poster from
         // http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg -->
         Picasso.with(getContext())
-                .load(moviesCursor.getPosterurl()).
-                into(ivPosterImage);
-
+                .load(moviesCursor.getPosterurl())
+                .fit()
+                .centerInside()
+                .into(ivPosterImage, PicassoPalette.with(moviesCursor.getPosterurl(), ivPosterImage)
+                        .use(PicassoPalette.Profile.MUTED_LIGHT)
+                        .intoBackground(llTitleScores)
+                        .intoTextColor(tvTitle)
+                        .intoTextColor(tvAudienceScore)
+                        .intoTextColor(tvSynopsis)
+                        .intoTextColor(tvCriticsScore));
 
         return view;
     }
