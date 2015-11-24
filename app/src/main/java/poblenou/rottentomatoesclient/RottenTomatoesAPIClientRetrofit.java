@@ -1,5 +1,6 @@
 package poblenou.rottentomatoesclient;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -7,6 +8,8 @@ import android.util.Log;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import poblenou.rottentomatoesclient.json.ApiData;
 import poblenou.rottentomatoesclient.json.Movie;
@@ -55,6 +58,8 @@ public class RottenTomatoesAPIClientRetrofit {
             if (response.isSuccess()) {
                 ApiData apiData = response.body();
 
+                ContentValues[] bulkToInsert;
+                List<ContentValues> mValueList = new ArrayList<>();
                 for (Movie peli : apiData.getMovies()) {
                     MoviesContentValues values = new MoviesContentValues();
 
@@ -68,12 +73,13 @@ public class RottenTomatoesAPIClientRetrofit {
                     values.putSynctime(syncTime);
                     values.putMovielist(movieList);
 
-                    context.getContentResolver().insert(
-                            MoviesColumns.CONTENT_URI,
-                            values.values());
-
                     Picasso.with(context).load(peli.getPoster()).fetch();
+                    mValueList.add(values.values());
                 }
+                bulkToInsert = new ContentValues[mValueList.size()];
+                mValueList.toArray(bulkToInsert);
+                context.getContentResolver().bulkInsert(MoviesColumns.CONTENT_URI, bulkToInsert);
+
             } else {
                 Log.e("XXX", response.errorBody().toString());
             }
