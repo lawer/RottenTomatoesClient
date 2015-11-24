@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
 
 import poblenou.rottentomatoesclient.provider.movies.MoviesCursor;
@@ -41,13 +43,19 @@ public class MoviesCursorAdapter extends SimpleCursorAdapter {
         // Unim el codi en les Views del Layout
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
         TextView tvReleaseDate = (TextView) convertView.findViewById(R.id.tvReleaseDate);
-        //TextView tvCast = (TextView) convertView.findViewById(R.id.tvCast);
         ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ivPosterSmall);
+        LinearLayout llMovieDetails = (LinearLayout) convertView.findViewById(R.id.llMovieDetails);
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         tvTitle.setText(moviesCursor.getTitle());
         tvReleaseDate.setText("Release Date: " + moviesCursor.getReleasedate());
-        Picasso.with(context).load(moviesCursor.getPosterurl()).fit().into(ivPosterImage);
+        Picasso.with(context).load(moviesCursor.getPosterurl()).fit().into(ivPosterImage,
+                PicassoPalette.with(moviesCursor.getPosterurl(), ivPosterImage)
+                        .use(PicassoPalette.Profile.MUTED_LIGHT)
+                        .intoBackground(llMovieDetails)
+                        .intoTextColor(tvTitle)
+                        .intoTextColor(tvReleaseDate)
+        );
 
         // Retornem la View replena per a mostrarla
         return convertView;
