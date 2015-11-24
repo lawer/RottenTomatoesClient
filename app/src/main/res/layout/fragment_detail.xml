@@ -5,52 +5,9 @@
 
     <!-- @drawable/large_movie_poster sourced from 
          http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg -->
-    <ImageView
-        android:id="@+id/ivPoster"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:maxHeight="160dp"
-        android:scaleType="fitXY" />
 
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivPoster"
-        android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/ivPoster"
-        android:text="The Dark Knight"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-    <TextView
-        android:id="@+id/tvCriticsScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvTitle"
-        android:layout_below="@+id/tvTitle"
-        android:layout_marginTop="5dp"
-        android:text="Critics Score: 93%"
-        android:textSize="14sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/tvAudienceScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvCriticsScore"
-        android:layout_below="@+id/tvCriticsScore"
-        android:layout_marginTop="5dp"
-        android:text="Audience Score: 93%"
-        android:textSize="14sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-<!--
+    <!--
     <TextView
         android:id="@+id/tvCast"
         android:layout_width="wrap_content"
@@ -64,31 +21,86 @@
 -->
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ivPoster"
-        android:layout_margin="10dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvCriticsConsensus"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This is an excellent movie that has action and romance"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+                android:layout_alignTop="@+id/ivPoster"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ivPoster"
+                android:text="The Dark Knight"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvSynopsis"
+                android:id="@+id/tvCriticsScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="This is a story about a protagonist defeating an antagonist"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
-        </LinearLayout>
+                android:layout_alignLeft="@+id/tvTitle"
+                android:layout_below="@+id/tvTitle"
+                android:layout_marginTop="5dp"
+                android:text="Critics Score: 93%"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvAudienceScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvCriticsScore"
+                android:layout_below="@+id/tvCriticsScore"
+                android:layout_marginTop="5dp"
+                android:text="Audience Score: 93%"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivPoster"
+                android:layout_width="175dp"
+                android:layout_height="275dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:maxHeight="160dp"
+                android:scaleType="fitXY" />
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivPoster"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvCriticsConsensus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="This is an excellent movie that has action and romance"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead" />
+
+                    <TextView
+                        android:id="@+id/tvSynopsis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="This is a story about a protagonist defeating an antagonist"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>
