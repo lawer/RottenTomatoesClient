@@ -35,15 +35,6 @@ public class MainActivityFragment extends Fragment implements android.support.v4
         setHasOptionsMenu(true);
     }
 
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-        refresh();
-    }
-*/
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -120,15 +111,6 @@ public class MainActivityFragment extends Fragment implements android.support.v4
         srlRefresh.setRefreshing(true);
 
         RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit(getContext());
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        /*String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
-
-        if (tipusConsulta.equals("vistes")) {
-            apiClient.getPeliculesMesVistes(pais);
-        } else {
-            apiClient.getProximesEstrenes(pais);
-        }*/
-
         apiClient.getPelicules(pais);
 
         srlRefresh.setRefreshing(false);
@@ -136,8 +118,20 @@ public class MainActivityFragment extends Fragment implements android.support.v4
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getContext(),
-                MoviesColumns.CONTENT_URI, null, null, null, null);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String tipusConsulta = preferences.getString("tipus_consulta", "vistes");
+
+        if (tipusConsulta.equals("vistes")) {
+            return new CursorLoader(getContext(),
+                    MoviesColumns.CONTENT_URI, null,
+                    MoviesColumns.MOVIELIST + "= ? ", new String[]{"mes_vistes"},
+                    null);
+        } else {
+            return new CursorLoader(getContext(),
+                    MoviesColumns.CONTENT_URI, null,
+                    MoviesColumns.MOVIELIST + "= ? ", new String[]{"proximes_estrenes"},
+                    null);
+        }
 
     }
 

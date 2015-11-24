@@ -1,12 +1,9 @@
 package poblenou.rottentomatoesclient;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
 
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 import poblenou.rottentomatoesclient.json.ApiData;
 import poblenou.rottentomatoesclient.json.Movie;
@@ -40,20 +37,29 @@ public class RottenTomatoesAPIClientRetrofit {
     public void getPelicules(String pais) {
         Call<ApiData> callMesVistes = servei.getPeliculesMesVistes(pais, API_KEY);
         Call<ApiData> callProximesEstrenes = servei.getProximesEstrenes(pais, API_KEY);
-        processCall(callMesVistes, "mes_vistes");
-        processCall(callProximesEstrenes, "proximes_estrenes");
+        long syncTime = System.currentTimeMillis();
+
+        processCall(callMesVistes, "mes_vistes", syncTime);
+        processCall(callProximesEstrenes, "proximes_estrenes", syncTime);
+
+        deleteOldMovies(syncTime);
+
     }
 
-    private void processCall(Call<ApiData> call, final String movieList) {
+    private void deleteOldMovies(long syncTime) {
+        context.getContentResolver().delete(
+                MoviesColumns.CONTENT_URI,
+                MoviesColumns.SYNCTIME + " < ?",
+                new String[]{Long.toString(syncTime)});
+    }
+
+    private void processCall(Call<ApiData> call, final String movieList, final long syncTime) {
         call.enqueue(new Callback<ApiData>() {
                          @Override
                          public void onResponse(Response<ApiData> response, Retrofit retrofit) {
                              if (response.isSuccess()) {
                                  ApiData apiData = response.body();
 
-                                 long syncTime = System.currentTimeMillis();
-
-                                 ArrayList<ContentValues> valuesList = new ArrayList<>();
                                  for (Movie peli : apiData.getMovies()) {
                                      MoviesContentValues values = new MoviesContentValues();
 
@@ -73,10 +79,6 @@ public class RottenTomatoesAPIClientRetrofit {
 
                                      Picasso.with(context).load(peli.getPoster()).fetch();
                                  }
-                                 context.getContentResolver().delete(
-                                         MoviesColumns.CONTENT_URI,
-                                         MoviesColumns.SYNCTIME + " < ?",
-                                         new String[]{Long.toString(syncTime)});
                              } else {
                                  Log.e("XXX", response.errorBody().toString());
                              }
