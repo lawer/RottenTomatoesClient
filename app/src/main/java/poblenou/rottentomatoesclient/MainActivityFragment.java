@@ -30,6 +30,13 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+        getLoaderManager().restartLoader(0, null, this);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
