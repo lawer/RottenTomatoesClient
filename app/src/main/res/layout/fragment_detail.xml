@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/rlContent">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -95,7 +96,7 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="10dp"
                         android:text="This is a story about a protagonist defeating an antagonist"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2" />
                 </LinearLayout>
 
             </LinearLayout>

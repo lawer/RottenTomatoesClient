@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import com.github.florent37.picassopalette.BitmapPalette;
 import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
 
@@ -48,10 +49,10 @@ public class MoviesCursorAdapter extends SimpleCursorAdapter {
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         tvTitle.setText(moviesCursor.getTitle());
-        tvReleaseDate.setText("Release Date: " + moviesCursor.getReleasedate());
+        tvReleaseDate.setText(moviesCursor.getReleasedate());
         Picasso.with(context).load(moviesCursor.getPosterurl()).fit().into(ivPosterImage,
                 PicassoPalette.with(moviesCursor.getPosterurl(), ivPosterImage)
-                        .use(PicassoPalette.Profile.MUTED_LIGHT)
+                        .use(PicassoPalette.Profile.VIBRANT_DARK)
                         .intoBackground(llMovieDetails)
                         .intoTextColor(tvTitle)
                         .intoTextColor(tvReleaseDate)

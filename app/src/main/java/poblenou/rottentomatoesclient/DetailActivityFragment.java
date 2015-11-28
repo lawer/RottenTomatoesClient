@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.florent37.picassopalette.BitmapPalette;
 import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
 
@@ -38,6 +40,7 @@ public class DetailActivityFragment extends Fragment {
         TextView tvAudienceScore = (TextView) view.findViewById(R.id.tvAudienceScore);
         TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
         LinearLayout llTitleScores = (LinearLayout) view.findViewById(R.id.llTitleScores);
+        RelativeLayout rlContent = (RelativeLayout) view.findViewById(R.id.rlContent);
 
         // Load movie data
         Long movie_id = getActivity().getIntent().getLongExtra("movie_id", -1);
@@ -70,13 +73,19 @@ public class DetailActivityFragment extends Fragment {
                 .load(moviesCursor.getPosterurl())
                 .fit()
                 .centerInside()
-                .into(ivPosterImage, PicassoPalette.with(moviesCursor.getPosterurl(), ivPosterImage)
-                        .use(PicassoPalette.Profile.MUTED_LIGHT)
-                        .intoBackground(llTitleScores)
-                        .intoTextColor(tvTitle)
-                        .intoTextColor(tvAudienceScore)
-                        .intoTextColor(tvSynopsis)
-                        .intoTextColor(tvCriticsScore));
+                .into(ivPosterImage,
+                        PicassoPalette.with(moviesCursor.getPosterurl(), ivPosterImage)
+                        .use(PicassoPalette.Profile.VIBRANT_DARK)
+                            .intoBackground(llTitleScores)
+                            .intoBackground(rlContent)
+                            .intoTextColor(tvTitle)
+                            .intoTextColor(tvAudienceScore)
+                            .intoTextColor(tvSynopsis)
+                            .intoTextColor(tvCriticsScore)
+
+                        .use(PicassoPalette.Profile.VIBRANT_DARK)
+                            .intoBackground(rlContent)
+                );
 
         return view;
     }
