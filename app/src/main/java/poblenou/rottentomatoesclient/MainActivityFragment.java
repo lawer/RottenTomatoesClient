@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.google.android.gms.gcm.GcmNetworkManager;
+import com.google.android.gms.gcm.OneoffTask;
+
 import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 
 /**
@@ -113,14 +116,15 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     }
 
     private void refresh() {
-        String pais = "es";
-
-        srlRefresh.setRefreshing(true);
-
-        RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit(getContext());
-        apiClient.getPelicules(pais);
-
-        srlRefresh.setRefreshing(false);
+        OneoffTask tasca = new OneoffTask.Builder()
+                .setExecutionWindow(0, 1)
+                .setPersisted(true)
+                .setRequiredNetwork(OneoffTask.NETWORK_STATE_CONNECTED)
+                .setRequiresCharging(false)
+                .setService(UpdateMoviesService.class)
+                .setTag("update_movies_now")
+                .build();
+        GcmNetworkManager.getInstance(getContext()).schedule(tasca);
     }
 
     @Override
