@@ -2,7 +2,6 @@ package poblenou.rottentomatoesclient;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.squareup.picasso.Picasso;
@@ -40,8 +39,14 @@ public class RottenTomatoesAPIClientRetrofit {
     }
 
     public void getPelicules(String pais) {
-        UpdateMoviesTask updateMovies = new UpdateMoviesTask();
-        updateMovies.execute(pais);
+        Call<ApiData> callMesVistes = servei.getPeliculesMesVistes(pais, API_KEY);
+        Call<ApiData> callProximesEstrenes = servei.getProximesEstrenes(pais, API_KEY);
+        long syncTime = System.currentTimeMillis();
+
+        processCall(callMesVistes, "mes_vistes", syncTime);
+        processCall(callProximesEstrenes, "proximes_estrenes", syncTime);
+
+        deleteOldMovies(syncTime);
     }
 
     private void deleteOldMovies(long syncTime) {
@@ -102,24 +107,5 @@ public class RottenTomatoesAPIClientRetrofit {
                 @Query("apikey") String apiKey
         );
     }
-
-    class UpdateMoviesTask extends AsyncTask {
-
-        @Override
-        protected Object doInBackground(Object[] params) {
-            String pais = (String) params[0];
-
-            Call<ApiData> callMesVistes = servei.getPeliculesMesVistes(pais, API_KEY);
-            Call<ApiData> callProximesEstrenes = servei.getProximesEstrenes(pais, API_KEY);
-            long syncTime = System.currentTimeMillis();
-
-            processCall(callMesVistes, "mes_vistes", syncTime);
-            processCall(callProximesEstrenes, "proximes_estrenes", syncTime);
-
-            deleteOldMovies(syncTime);
-            return null;
-        }
-    }
-
 }
 
