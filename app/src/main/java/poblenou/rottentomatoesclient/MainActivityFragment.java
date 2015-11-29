@@ -87,6 +87,8 @@ public class MainActivityFragment extends Fragment implements android.support.v4
             }
         });
 
+        UpdateMoviesService.runDaily(getContext());
+
         return rootView;
     }
 
