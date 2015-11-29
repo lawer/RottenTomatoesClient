@@ -28,7 +28,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/fragmentMain"
             android:name="poblenou.rottentomatoesclient.MainActivityFragment"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -38,13 +38,13 @@
             tools:layout="@layout/fragment_main" />
 
         <fragment
-            android:id="@+id/fragment3"
+            android:id="@+id/fragmentDetail"
             android:name="poblenou.rottentomatoesclient.DetailActivityFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/fragment2"
-            android:layout_toRightOf="@+id/fragment2"
+            android:layout_toEndOf="@+id/fragmentMain"
+            android:layout_toRightOf="@+id/fragmentMain"
             tools:layout="@layout/fragment_detail" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
