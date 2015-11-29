@@ -53,12 +53,12 @@ public class MainActivityFragment extends Fragment implements android.support.v4
                 getContext(),
                 R.layout.lvpelis_item,
                 null,
-                new String[] {
+                new String[]{
                         MoviesColumns.POSTERURL,
                         MoviesColumns.TITLE,
                         MoviesColumns.AUDIENCESCORE
                 },
-                new int[] {
+                new int[]{
                         R.id.ivPosterSmall,
                         R.id.tvTitle,
                         R.id.tvCriticsScore
@@ -150,6 +150,11 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     @Override
     public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
         adapter.swapCursor(null);
+    }
+
+    // Container Activity must implement this interface
+    public interface OnMovieSelectedListener {
+        public void onMovieSelected(int id);
     }
 
 }
