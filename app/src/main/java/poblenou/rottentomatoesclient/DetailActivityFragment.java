@@ -35,61 +35,64 @@ public class DetailActivityFragment extends Fragment {
         Long movie_id = getActivity().getIntent().getLongExtra("movie_id", -1);
 
         if (movie_id != -1) {
-
-            // Fetch views
-            ImageView ivPosterImage = (ImageView) view.findViewById(R.id.ivPoster);
-            TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-            TextView tvSynopsis = (TextView) view.findViewById(R.id.tvSynopsis);
-            TextView tvAudienceScore = (TextView) view.findViewById(R.id.tvAudienceScore);
-            TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
-            LinearLayout llTitleScores = (LinearLayout) view.findViewById(R.id.llTitleScores);
-            RelativeLayout rlContent = (RelativeLayout) view.findViewById(R.id.rlContent);
-
-            // Load movie data
-            Cursor cursor = getContext().getContentResolver().query(
-                    MoviesColumns.CONTENT_URI,
-                    null,
-                    MoviesColumns._ID + " = ?",
-                    new String[]{String.valueOf(movie_id)},
-                    null
-            );
-
-            MoviesCursor moviesCursor = new MoviesCursor(cursor);
-            moviesCursor.moveToNext();
-
-            tvTitle.setText(moviesCursor.getTitle());
-            tvCriticsScore.setText(
-                    Html.fromHtml("<b>Critics Score:</b> " +
-                            moviesCursor.getCriticsscore() + "%")
-            );
-            tvAudienceScore.setText(
-                    Html.fromHtml("<b>Audience Score:</b> " +
-                            moviesCursor.getAudiencescore() + "%")
-            );
-            //tvCast.setText(movie.getCastList());
-            tvSynopsis.setText(Html.fromHtml("<b>Synopsis:</b> " + moviesCursor.getSynopsis()));
-
-            // R.drawable.large_movie_poster from
-            // http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg -->
-            Picasso.with(getContext())
-                    .load(moviesCursor.getPosterurl())
-                    .fit()
-                    .centerInside()
-                    .into(ivPosterImage,
-                            PicassoPalette.with(moviesCursor.getPosterurl(), ivPosterImage)
-                                    .use(PicassoPalette.Profile.VIBRANT_DARK)
-                                    .intoBackground(llTitleScores)
-                                    .intoBackground(rlContent)
-                                    .intoTextColor(tvTitle)
-                                    .intoTextColor(tvAudienceScore)
-                                    .intoTextColor(tvSynopsis)
-                                    .intoTextColor(tvCriticsScore)
-
-                                    .use(PicassoPalette.Profile.VIBRANT_DARK)
-                                    .intoBackground(rlContent)
-                    );
+            loadMovie(view, movie_id);
         }
 
         return view;
+    }
+
+    private void loadMovie(View view, Long movie_id) {
+        // Fetch views
+        ImageView ivPosterImage = (ImageView) view.findViewById(R.id.ivPoster);
+        TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+        TextView tvSynopsis = (TextView) view.findViewById(R.id.tvSynopsis);
+        TextView tvAudienceScore = (TextView) view.findViewById(R.id.tvAudienceScore);
+        TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
+        LinearLayout llTitleScores = (LinearLayout) view.findViewById(R.id.llTitleScores);
+        RelativeLayout rlContent = (RelativeLayout) view.findViewById(R.id.rlContent);
+
+        // Load movie data
+        Cursor cursor = getContext().getContentResolver().query(
+                MoviesColumns.CONTENT_URI,
+                null,
+                MoviesColumns._ID + " = ?",
+                new String[]{String.valueOf(movie_id)},
+                null
+        );
+
+        MoviesCursor moviesCursor = new MoviesCursor(cursor);
+        moviesCursor.moveToNext();
+
+        tvTitle.setText(moviesCursor.getTitle());
+        tvCriticsScore.setText(
+                Html.fromHtml("<b>Critics Score:</b> " +
+                        moviesCursor.getCriticsscore() + "%")
+        );
+        tvAudienceScore.setText(
+                Html.fromHtml("<b>Audience Score:</b> " +
+                        moviesCursor.getAudiencescore() + "%")
+        );
+        //tvCast.setText(movie.getCastList());
+        tvSynopsis.setText(Html.fromHtml("<b>Synopsis:</b> " + moviesCursor.getSynopsis()));
+
+        // R.drawable.large_movie_poster from
+        // http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg -->
+        Picasso.with(getContext())
+                .load(moviesCursor.getPosterurl())
+                .fit()
+                .centerInside()
+                .into(ivPosterImage,
+                        PicassoPalette.with(moviesCursor.getPosterurl(), ivPosterImage)
+                                .use(PicassoPalette.Profile.VIBRANT_DARK)
+                                .intoBackground(llTitleScores)
+                                .intoBackground(rlContent)
+                                .intoTextColor(tvTitle)
+                                .intoTextColor(tvAudienceScore)
+                                .intoTextColor(tvSynopsis)
+                                .intoTextColor(tvCriticsScore)
+
+                                .use(PicassoPalette.Profile.VIBRANT_DARK)
+                                .intoBackground(rlContent)
+                );
     }
 }
