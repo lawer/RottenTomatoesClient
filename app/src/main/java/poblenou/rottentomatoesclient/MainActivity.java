@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity
         boolean dos_panells = getResources().getBoolean(R.bool.dos_panells);
 
         if (dos_panells) {
-
+            DetailActivityFragment detailFragment = (DetailActivityFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.fragmentDetail);
+            detailFragment.loadMovieFromActivity(id);
         } else {
             Intent i = new Intent(this, DetailActivity.class);
             i.putExtra("movie_id", id);

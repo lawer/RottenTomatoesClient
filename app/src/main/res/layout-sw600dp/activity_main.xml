@@ -40,8 +40,9 @@
         <fragment
             android:id="@+id/fragmentDetail"
             android:name="poblenou.rottentomatoesclient.DetailActivityFragment"
+            class="poblenou.rottentomatoesclient.DetailActivityFragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/fragmentMain"
             android:layout_toRightOf="@+id/fragmentMain"

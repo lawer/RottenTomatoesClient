@@ -23,14 +23,31 @@ import poblenou.rottentomatoesclient.provider.movies.MoviesCursor;
  */
 public class DetailActivityFragment extends Fragment {
 
+    private ImageView ivPosterImage;
+    private TextView tvTitle;
+    private TextView tvSynopsis;
+    private TextView tvAudienceScore;
+    private TextView tvCriticsScore;
+    private LinearLayout llTitleScores;
+    private RelativeLayout rlContent;
+
     public DetailActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail, container, false);
         super.onCreate(savedInstanceState);
+
+        View view = inflater.inflate(R.layout.fragment_detail, container, false);
+        // Fetch views
+        ivPosterImage = (ImageView) view.findViewById(R.id.ivPoster);
+        tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+        tvSynopsis = (TextView) view.findViewById(R.id.tvSynopsis);
+        tvAudienceScore = (TextView) view.findViewById(R.id.tvAudienceScore);
+        tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
+        llTitleScores = (LinearLayout) view.findViewById(R.id.llTitleScores);
+        rlContent = (RelativeLayout) view.findViewById(R.id.rlContent);
 
         Long movie_id = getActivity().getIntent().getLongExtra("movie_id", -1);
 
@@ -42,15 +59,6 @@ public class DetailActivityFragment extends Fragment {
     }
 
     private void loadMovie(View view, Long movie_id) {
-        // Fetch views
-        ImageView ivPosterImage = (ImageView) view.findViewById(R.id.ivPoster);
-        TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        TextView tvSynopsis = (TextView) view.findViewById(R.id.tvSynopsis);
-        TextView tvAudienceScore = (TextView) view.findViewById(R.id.tvAudienceScore);
-        TextView tvCriticsScore = (TextView) view.findViewById(R.id.tvCriticsScore);
-        LinearLayout llTitleScores = (LinearLayout) view.findViewById(R.id.llTitleScores);
-        RelativeLayout rlContent = (RelativeLayout) view.findViewById(R.id.rlContent);
-
         // Load movie data
         Cursor cursor = getContext().getContentResolver().query(
                 MoviesColumns.CONTENT_URI,
@@ -94,5 +102,10 @@ public class DetailActivityFragment extends Fragment {
                                 .use(PicassoPalette.Profile.VIBRANT_DARK)
                                 .intoBackground(rlContent)
                 );
+    }
+
+    public void loadMovieFromActivity(Long movie_id) {
+        View view = getView();
+        loadMovie(view, movie_id);
     }
 }
