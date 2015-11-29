@@ -1,5 +1,6 @@
 package poblenou.rottentomatoesclient;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -25,6 +26,7 @@ import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 public class MainActivityFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
     private MoviesCursorAdapter adapter;
     private SwipeRefreshLayout srlRefresh;
+    private OnMovieSelectedListener listener;
 
     public MainActivityFragment() {
     }
@@ -40,6 +42,13 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (OnMovieSelectedListener) context;
+
     }
 
     @Override
@@ -154,7 +163,7 @@ public class MainActivityFragment extends Fragment implements android.support.v4
 
     // Container Activity must implement this interface
     public interface OnMovieSelectedListener {
-        public void onMovieSelected(int id);
+        void onMovieSelected(int id);
     }
 
 }
