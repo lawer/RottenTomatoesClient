@@ -44,8 +44,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onMovieSelected(long id) {
-        Intent i = new Intent(this, DetailActivity.class);
-        i.putExtra("movie_id", id);
-        startActivity(i);
+        boolean dos_panells = getResources().getBoolean(R.bool.dos_panells);
+
+        if (dos_panells) {
+
+        } else {
+            Intent i = new Intent(this, DetailActivity.class);
+            i.putExtra("movie_id", id);
+            startActivity(i);
+        }
     }
 }
