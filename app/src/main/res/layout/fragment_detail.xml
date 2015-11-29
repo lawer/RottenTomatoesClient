@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlContent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/rlContent">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -37,7 +37,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_toRightOf="@+id/ivPoster"
-                    android:text="The Dark Knight"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -57,7 +56,6 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="Critics Score: 93%"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textSize="14sp" />
 
@@ -76,7 +74,6 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="0"
-                        android:text="Audience Score: 93%"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -95,7 +92,6 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="10dp"
-                        android:text="This is a story about a protagonist defeating an antagonist"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2" />
                 </LinearLayout>
 
