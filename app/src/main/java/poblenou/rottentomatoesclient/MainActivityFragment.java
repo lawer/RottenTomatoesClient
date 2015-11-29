@@ -1,7 +1,6 @@
 package poblenou.rottentomatoesclient;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -82,9 +81,7 @@ public class MainActivityFragment extends Fragment implements android.support.v4
         lvPelis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getContext(), DetailActivity.class);
-                i.putExtra("movie_id", id);
-                startActivity(i);
+                listener.onMovieSelected(id);
             }
         });
 
@@ -163,7 +160,7 @@ public class MainActivityFragment extends Fragment implements android.support.v4
 
     // Container Activity must implement this interface
     public interface OnMovieSelectedListener {
-        void onMovieSelected(int id);
+        void onMovieSelected(long id);
     }
 
 }
