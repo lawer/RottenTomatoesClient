@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 
 import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 
@@ -41,6 +42,16 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        if (!preferences.contains("first_sync")) {
+            refresh();
+            UpdateMoviesService.runDaily(getContext());
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("first_sync", true);
+            editor.apply();
+        }
     }
 
     @Override
@@ -85,6 +96,9 @@ public class MainActivityFragment extends Fragment implements android.support.v4
             }
         });
 
+        ProgressBar pbProgress = (ProgressBar) rootView.findViewById(R.id.pbProgress);
+        lvPelis.setEmptyView(pbProgress);
+
         srlRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.srlRefresh);
         srlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -119,14 +133,7 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     }
 
     private void refresh() {
-        String pais = "es";
-
-        srlRefresh.setRefreshing(true);
-
-        RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit(getContext());
-        apiClient.getPelicules(pais);
-
-        srlRefresh.setRefreshing(false);
+        UpdateMoviesService.forceRun(getContext());
     }
 
     @Override

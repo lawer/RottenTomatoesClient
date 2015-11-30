@@ -2,8 +2,9 @@ package poblenou.rottentomatoesclient;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -26,22 +27,44 @@ public class RottenTomatoesAPIClientRetrofit {
     final String BASE_URL = "http://api.rottentomatoes.com/api/public/v1.0/";
     final String API_KEY = "9htuhtcb4ymusd73d4z6jxcj";
     private final Context context;
+    private final Handler handler;
 
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
-    RottenTomatoesInterface servei = retrofit.create(RottenTomatoesInterface.class);
+    Retrofit retrofit;
+    RottenTomatoesInterface servei;
 
     public RottenTomatoesAPIClientRetrofit(Context context) {
         super();
         this.context = context;
+        handler = new Handler(context.getMainLooper());
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        servei = retrofit.create(RottenTomatoesInterface.class);
     }
 
     public void getPelicules(String pais) {
-        UpdateMoviesTask updateMovies = new UpdateMoviesTask();
-        updateMovies.execute(pais);
+        toast("Comença la sincronització");
+
+        Call<ApiData> callMesVistes = servei.getPeliculesMesVistes(pais, API_KEY);
+        Call<ApiData> callProximesEstrenes = servei.getProximesEstrenes(pais, API_KEY);
+        long syncTime = System.currentTimeMillis();
+
+        processCall(callMesVistes, "mes_vistes", syncTime);
+        processCall(callProximesEstrenes, "proximes_estrenes", syncTime);
+
+        deleteOldMovies(syncTime);
+
+        toast("Acaba la sincronització");
+    }
+
+    private void toast(final String text) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void deleteOldMovies(long syncTime) {
@@ -102,24 +125,5 @@ public class RottenTomatoesAPIClientRetrofit {
                 @Query("apikey") String apiKey
         );
     }
-
-    class UpdateMoviesTask extends AsyncTask {
-
-        @Override
-        protected Object doInBackground(Object[] params) {
-            String pais = (String) params[0];
-
-            Call<ApiData> callMesVistes = servei.getPeliculesMesVistes(pais, API_KEY);
-            Call<ApiData> callProximesEstrenes = servei.getProximesEstrenes(pais, API_KEY);
-            long syncTime = System.currentTimeMillis();
-
-            processCall(callMesVistes, "mes_vistes", syncTime);
-            processCall(callProximesEstrenes, "proximes_estrenes", syncTime);
-
-            deleteOldMovies(syncTime);
-            return null;
-        }
-    }
-
 }
 
