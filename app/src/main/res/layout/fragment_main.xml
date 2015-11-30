@@ -1,14 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_shadow_start_color"
     tools:context=".MainActivityFragment"
-    tools:showIn="@layout/activity_main"
-    android:background="@color/cardview_shadow_start_color">
+    tools:showIn="@layout/activity_main">
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srlRefresh"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/srlRefresh">
+        android:layout_height="wrap_content">
 
         <GridView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -18,5 +18,14 @@
             android:columnWidth="150dp"
             android:numColumns="auto_fit" />
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/pbProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/accent_material_dark" />
 
 </RelativeLayout>

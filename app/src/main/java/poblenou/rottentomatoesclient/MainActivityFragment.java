@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 
 import poblenou.rottentomatoesclient.provider.movies.MoviesColumns;
 
@@ -40,6 +41,16 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        if (!preferences.contains("first_sync")) {
+            UpdateMoviesService.runNow(getContext());
+            UpdateMoviesService.runDaily(getContext());
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("first_sync", true);
+            editor.apply();
+        }
     }
 
     @Override
@@ -79,6 +90,9 @@ public class MainActivityFragment extends Fragment implements android.support.v4
             }
         });
 
+        ProgressBar pbProgress = (ProgressBar) rootView.findViewById(R.id.pbProgress);
+        lvPelis.setEmptyView(pbProgress);
+
         srlRefresh = (SwipeRefreshLayout) rootView.findViewById(R.id.srlRefresh);
         srlRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -86,8 +100,6 @@ public class MainActivityFragment extends Fragment implements android.support.v4
                 refresh();
             }
         });
-
-        UpdateMoviesService.runDaily(getContext());
 
         return rootView;
     }
