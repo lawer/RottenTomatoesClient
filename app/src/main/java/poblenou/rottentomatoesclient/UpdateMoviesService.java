@@ -1,6 +1,7 @@
 package poblenou.rottentomatoesclient;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
@@ -35,6 +36,10 @@ public class UpdateMoviesService extends GcmTaskService {
         GcmNetworkManager.getInstance(context).schedule(tasca);
     }
 
+    public static void forceRun(Context context) {
+        ForceRefreshTask task = new ForceRefreshTask();
+        task.execute(context);
+    }
 
     @Override
     public int onRunTask(TaskParams taskParams) {
@@ -44,5 +49,18 @@ public class UpdateMoviesService extends GcmTaskService {
         apiClient.getPelicules(pais);
 
         return 0;
+    }
+
+    static class ForceRefreshTask extends AsyncTask {
+        @Override
+        protected Void doInBackground(Object... params) {
+            Context context = (Context) params[0];
+            String pais = "es";
+
+            RottenTomatoesAPIClientRetrofit apiClient = new RottenTomatoesAPIClientRetrofit(context);
+            apiClient.getPelicules(pais);
+
+            return null;
+        }
     }
 }

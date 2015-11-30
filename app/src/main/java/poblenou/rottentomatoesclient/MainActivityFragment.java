@@ -44,7 +44,7 @@ public class MainActivityFragment extends Fragment implements android.support.v4
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         if (!preferences.contains("first_sync")) {
-            UpdateMoviesService.runNow(getContext());
+            refresh();
             UpdateMoviesService.runDaily(getContext());
 
             SharedPreferences.Editor editor = preferences.edit();
@@ -127,7 +127,7 @@ public class MainActivityFragment extends Fragment implements android.support.v4
     }
 
     private void refresh() {
-        UpdateMoviesService.runNow(getContext());
+        UpdateMoviesService.forceRun(getContext());
     }
 
     @Override
